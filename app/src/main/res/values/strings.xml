@@ -6,6 +6,7 @@
     <string name="new_exercise">New\nExercise</string>
     <string name="history">History</string>
     <string name="disp_name">Display Name:</string>
+    <string name="gender">Gender:</string>
     <string name="birth_date">Birth Date:</string>
     <string name="day">Day</string>
     <string name="year">Year</string>

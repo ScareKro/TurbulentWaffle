@@ -24,8 +24,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="@string/gender"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:id="@+id/radioButton" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:id="@+id/radioButton2"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         android:text="@string/birth_date"
-        android:paddingTop="0dp"
         android:textSize="25sp"
         android:textStyle="bold"/>
     <RelativeLayout
@@ -58,9 +80,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
+        android:paddingTop="8dp"
         android:text="@string/weight_be_honest"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
 
     <RelativeLayout
@@ -83,9 +105,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
+        android:paddingTop="8dp"
         android:text="@string/height_request"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
 
     <RelativeLayout
@@ -108,9 +130,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
+        android:paddingTop="8dp"
         android:text="@string/goal_weight"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
 
     <RelativeLayout
