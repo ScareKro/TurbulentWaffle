@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_prior_meal"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/prior_meal_spinner_id"
+        android:background="#b4e2ff"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:id="@+id/servings_amount_id"
+            android:text="Servings:"
+            android:textStyle="bold"/>
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/servings_num_prior_spinner_id"
+            android:background="#b4e2ff"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/big_or"
+        android:textSize="35sp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_meal_selection"
+        android:textSize="30sp"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_meal_ET"
+        android:background="#b4e2ff"
+        android:textSize="25sp"
+        android:hint="@string/name_meal_here"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:id="@+id/servings_amount_new_id"
+            android:text="Servings:"
+            android:textStyle="bold"/>
+        <Spinner
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/servings_num_new_spinner_id"
+            android:background="#b4e2ff"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:id="@+id/cal_per_serving_txt_id"
+            android:text="@string/cal_per_serving"
+            android:textStyle="bold"/>
+        <EditText
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="#b4e2ff"
+            android:textSize="25sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:padding="10dp">
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:textSize="30sp"
+            android:id="@+id/meal_next_button"/>
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/submit"
+            android:textSize="30sp"
+            android:id="@+id/meal_submit_button"/>
+    </RelativeLayout>
+
+</LinearLayout>

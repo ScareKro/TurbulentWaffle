@@ -12,4 +12,11 @@
     <string name="weight_be_honest">Weight (Be Honest):</string>
     <string name="height_request">Height:</string>
     <string name="goal_weight">Goal Weight:</string>
+    <string name="select_prior_meal">Select Prior Meal:</string>
+    <string name="big_or">--------OR--------</string>
+    <string name="new_meal_selection">New Meal Selection:</string>
+    <string name="name_meal_here">---Name Meal Here---</string>
+    <string name="cal_per_serving">Calories per serving:</string>
+    <string name="next">Next</string>
+    <string name="submit">Submit</string>
 </resources>
