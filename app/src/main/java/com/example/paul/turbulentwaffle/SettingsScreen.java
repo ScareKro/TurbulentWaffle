@@ -180,7 +180,7 @@ public class SettingsScreen extends Activity{
             goingBack.putExtra("CurrWeightUnit", currWeightUnitSelected);
             goingBack.putExtra("Height",heightText.getText().toString());
             goingBack.putExtra("HeightUnit", heightUnitSelected);
-            goingBack.putExtra("GoalWeight",goalText.getText().toString();
+            goingBack.putExtra("GoalWeight",goalText.getText().toString());
             goingBack.putExtra("GoalWeightUnit", goalWeightUnitSelected);
 
             setResult(RESULT_OK,goingBack);
