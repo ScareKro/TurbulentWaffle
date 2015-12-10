@@ -89,5 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onAddMeal(View view) {
+        Intent getNameScreenIntent = new Intent(this,AddMealScreen.class);
+        final int result = 1;
+        startActivityForResult(getNameScreenIntent, result);
     }
 }

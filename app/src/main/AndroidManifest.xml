@@ -20,6 +20,9 @@
         <activity android:name=".SettingsScreen"
             android:label="Settings"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".AddMealScreen"
+            android:label="AddMeal"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
