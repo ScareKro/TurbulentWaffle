@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Intent getNameScreenIntent = new Intent(this,SettingsScreen.class);
             final int result = 1;
-            getNameScreenIntent.putExtra("callingActivity", "MainActivity");
             startActivityForResult(getNameScreenIntent, result);
         }
 
