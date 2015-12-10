@@ -71,7 +71,7 @@ public class SettingsScreen extends Activity{
                 ArrayAdapter.createFromResource(this,
                         R.array.month_units,
                         android.R.layout.simple_spinner_item);
-        weightSpinnerAdapter.setDropDownViewResource(
+        monthSpinnerAdapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
 
         birthDateSpinner.setAdapter(monthSpinnerAdapter);
@@ -80,7 +80,7 @@ public class SettingsScreen extends Activity{
                 ArrayAdapter.createFromResource(this,       //ft and m
                         R.array.height_units,
                         android.R.layout.simple_spinner_item);
-        weightSpinnerAdapter.setDropDownViewResource(
+        heightSpinnerAdapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
 
         heightSpinner.setAdapter(heightSpinnerAdapter);

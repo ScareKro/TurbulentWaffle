@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="prior_temp_units">
+        <item></item>
+        <item>Not</item>
+        <item>Yet</item>
+        <item>Implemented</item>
+    </string-array>
+</resources>
