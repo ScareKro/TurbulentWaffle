@@ -1,11 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
 
-    <TextView android:text="Hello World!" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</RelativeLayout>
+    //Greeting Line to be updated with the user's name.
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/settings"
+            android:layout_alignParentRight="true"
+            android:id="@+id/settings_button"/>
+        //Image button needs to be edited to go to settings page.
+
+        <TextView android:text="@string/hi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:id="@+id/hi_text"/>
+
+    </RelativeLayout>
+
+    //Remaining Daily Calories.
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remaining Cal:\t\t"
+            android:textSize="35sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#640000"
+            android:id="@+id/remaining_cal_id"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/add_meal"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:text="@string/new_exercise"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:text="@string/history"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>
