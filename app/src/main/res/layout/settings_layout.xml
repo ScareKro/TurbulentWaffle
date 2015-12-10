@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/disp_name"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
     <EditText
         android:layout_width="match_parent"
@@ -24,30 +23,43 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text="@string/gender"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+    <Spinner
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:id="@+id/gender_spinner_id"
+        android:background="#b4e2ff"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
         android:text="@string/birth_date"
-        android:paddingTop="15dp"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <EditText
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/birth_date_id"
             android:background="#b4e2ff"
             android:hint="@string/day"/>
         <Spinner
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/month_date_spinner_id"
             android:background="#b4e2ff"
             android:layout_centerHorizontal="true" />
 
         <EditText
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/birth_year_id"
             android:background="#b4e2ff"
@@ -58,9 +70,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
+        android:paddingTop="8dp"
         android:text="@string/weight_be_honest"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
 
     <RelativeLayout
@@ -68,13 +80,13 @@
         android:layout_height="wrap_content">
         <EditText
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/weight_number_id"
             android:background="#b4e2ff"/>
         <Spinner
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/weight_unit_spinner_id"
             android:background="#b4e2ff"
             android:layout_centerHorizontal="true"/>
@@ -83,9 +95,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
+        android:paddingTop="8dp"
         android:text="@string/height_request"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
 
     <RelativeLayout
@@ -93,13 +105,13 @@
         android:layout_height="wrap_content">
         <EditText
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/height_number_id"
             android:background="#b4e2ff"/>
         <Spinner
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/height_unit_spinner_id"
             android:background="#b4e2ff"
             android:layout_centerHorizontal="true"/>
@@ -108,9 +120,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
+        android:paddingTop="8dp"
         android:text="@string/goal_weight"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"/>
 
     <RelativeLayout
@@ -118,13 +130,13 @@
         android:layout_height="wrap_content">
         <EditText
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/goal_weight_number_id"
             android:background="#b4e2ff"/>
         <Spinner
             android:layout_width="100dp"
-            android:layout_height="40dp"
+            android:layout_height="35dp"
             android:id="@+id/goal_weight_unit_spinner_id"
             android:background="#b4e2ff"
             android:layout_centerHorizontal="true"/>
