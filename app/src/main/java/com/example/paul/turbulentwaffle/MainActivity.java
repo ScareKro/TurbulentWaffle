@@ -77,7 +77,11 @@ public class MainActivity extends AppCompatActivity {
             userBMR = (10 * weightKG) + (6.25 * heightCM) - (5.0 * (double) age) + 5;
 
             TextView RemainingCalsText = (TextView) findViewById(R.id.remaining_cal_id);
-            RemainingCalsText.setText(String.valueOf(userBMR));
+            RemainingCalsText.setText(String.valueOf((int)userBMR));
+        }else if(data.getStringExtra("PageName").toString().equals("AddMeal")){
+            userBMR -= Integer.parseInt(data.getStringExtra("CalsEaten"));
+            TextView RemainingCalsText = (TextView) findViewById(R.id.remaining_cal_id);
+            RemainingCalsText.setText(String.valueOf((int)userBMR));
         }
     }
 

@@ -1,12 +1,14 @@
 package com.example.paul.turbulentwaffle;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class AddMealScreen extends Activity{
     private Spinner priorSpinner,
@@ -15,7 +17,7 @@ public class AddMealScreen extends Activity{
 
     private EditText nameNewMeal, calPerServing;
 
-    private int priorServe, newServe, calPerServe;
+    private int priorServe, newServe, calPerServe, calTotal;
 
     private String priorMealString, nameNewMealString;
 
@@ -86,5 +88,40 @@ public class AddMealScreen extends Activity{
             @Override
             public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
         });
+    }
+    public void onSubmitFoods(View view) {
+        String warning = "You must select a meal!";
+//        nameNewMealString = nameNewMeal.toString();
+//        calPerServe = Integer.parseInt(calPerServing.toString());
+        if (priorMealString.isEmpty() && /*nameNewMealString.isEmpty()*/nameNewMeal.toString().isEmpty()) {
+            Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
+        } else if (!priorMealString.isEmpty()) {
+            /*TODO*/
+            //-----------temp code--------------------
+            Intent goingBack = new Intent();
+            goingBack.putExtra("PageName", "AddMeal");
+            goingBack.putExtra("CalsEaten", 500);
+            finish();
+            //-----------------------------------------
+        } else if (!nameNewMeal.toString().isEmpty() && calPerServing.toString().isEmpty()) {
+            warning = "You need to state how many calories per serving.";
+            Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
+        } else if (!nameNewMeal.toString().isEmpty() && !calPerServing.toString().isEmpty()) {
+            Intent goingBack = new Intent();
+            calTotal = calPerServe*newServe;
+
+            goingBack.putExtra("PageName", "AddMeal");
+            goingBack.putExtra("CalsEaten",calTotal);
+
+            setResult(RESULT_OK, goingBack);
+            finish();
+        } else {
+            /*TODO*/
+        }
+    }
+
+    public void onNextFoods(View view) {
+        calTotal = calPerServe*newServe;
+        setContentView(R.layout.new_meal_layout);
     }
 }

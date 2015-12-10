@@ -113,13 +113,15 @@
             android:layout_height="wrap_content"
             android:text="@string/next"
             android:textSize="30sp"
-            android:id="@+id/meal_next_button"/>
+            android:id="@+id/meal_next_button"
+            android:onClick="onNextFoods"/>
         <Button
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="@string/submit"
             android:textSize="30sp"
+            android:onClick="onSubmitFoods"
             android:id="@+id/meal_submit_button"/>
     </RelativeLayout>
 
