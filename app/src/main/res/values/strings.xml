@@ -5,4 +5,11 @@
     <string name="add_meal">Add\nMeal</string>
     <string name="new_exercise">New\nExercise</string>
     <string name="history">History</string>
+    <string name="disp_name">Display Name:</string>
+    <string name="birth_date">Birth Date:</string>
+    <string name="day">Day</string>
+    <string name="year">Year</string>
+    <string name="weight_be_honest">Weight (Be Honest):</string>
+    <string name="height_request">Height:</string>
+    <string name="goal_weight">Goal Weight:</string>
 </resources>
