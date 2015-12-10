@@ -135,6 +135,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:text="Submit"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:onClick="onSubmitProfile"/>
 
 </LinearLayout>

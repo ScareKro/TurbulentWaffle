@@ -1,16 +1,15 @@
 package com.example.paul.turbulentwaffle;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.EditText;
+import android.widget.Toast;
 
-/**
- * Created by Paul on 12/9/2015.
- */
 public class SettingsScreen extends Activity{
     private Spinner birthDateSpinner,
             weightSpinner,
@@ -93,32 +92,99 @@ public class SettingsScreen extends Activity{
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 currWeightUnitSelected = parent.getItemAtPosition(position).toString();
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO*/}
+            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
         });
         goalWeightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 goalWeightUnitSelected = parent.getItemAtPosition(position).toString();
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO*/}
+            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
         });
         birthDateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 monthSelected = parent.getItemAtPosition(position).toString();
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO*/}
+            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
         });
         heightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 heightUnitSelected = parent.getItemAtPosition(position).toString();
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO*/}
+            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
         });
+    }
+    public void onSubmitProfile(View view){
+        int pass = 1;
+        String warning = "You have unfilled fields:\n";
+        if(dispName.getText().toString().isEmpty()){
+            pass = 0;
+            warning+="Display Name\n";
+        }
+        if(bDayDay.getText().toString().isEmpty()){
+            pass = 0;
+            warning+="Birth Day\n";
+        }
+        if(monthSelected.isEmpty()){
+            pass = 0;
+            warning+="Birth Month\n";
+        }
+        if(bDayYear.getText().toString().isEmpty()){
+            pass = 0;
+            warning+="Birth Year\n";
+        }
+        if(weightText.getText().toString().isEmpty()){
+            pass = 0;
+            warning+="Current Weight\n";
+        }
+        if(currWeightUnitSelected.isEmpty()){
+            pass = 0;
+            warning+="Units for Current Weight\n";
+        }
+        if(heightText.getText().toString().isEmpty()){
+            pass = 0;
+            warning+="Height\n";
+        }
+        if(heightUnitSelected.isEmpty()){
+            pass = 0;
+            warning+="Height Units\n";
+        }
+        if(goalText.getText().toString().isEmpty()){
+            pass = 0;
+            warning+="Goal Weight\n";
+        }
+        if(goalWeightUnitSelected.isEmpty()){
+            pass = 0;
+            warning+="Goal Weight Units\n";
+        }
+        if(pass==0){
+            Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
+        }else{
+            Intent goingBack = new Intent();
+
+            goingBack.putExtra("DispName",dispName.getText().toString());
+            goingBack.putExtra("BDayDay",bDayDay.getText().toString());
+            goingBack.putExtra("BDayMonth",monthSelected);
+            goingBack.putExtra("BDayYear",bDayYear.getText().toString());
+            goingBack.putExtra("CurrWeight",weightText.getText().toString());
+            goingBack.putExtra("CurrWeightUnit", currWeightUnitSelected);
+            goingBack.putExtra("Height",heightText.getText().toString());
+            goingBack.putExtra("HeightUnit", heightUnitSelected);
+            goingBack.putExtra("GoalWeight",goalText.getText().toString();
+            goingBack.putExtra("GoalWeightUnit", goalWeightUnitSelected);
+
+            setResult(RESULT_OK,goingBack);
+            finish();
+        }
     }
 }
