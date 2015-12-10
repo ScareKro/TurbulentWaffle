@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
             currWeightUnit,
             heightUnit,
             goalWeightUnit;
-    int age, genderConstant;
-    double heightCM, weightKG, userBMR, goalWeightKG, remainingCals, todayCals;
+    int age, genderConstant, remainingCals, todayCals;
+    double heightCM, weightKG, userBMR, goalWeightKG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
             //Calculate the calories burned at rest
             userBMR = (10 * weightKG) + (6.25 * heightCM) - (5.0 * (double) age) + genderConstant;
 
+            TextView RemainingCalsText = (TextView) findViewById(R.id.remaining_cal_id);
+            RemainingCalsText.setText(String.valueOf((int)userBMR));
+        }else if(data.getStringExtra("PageName").toString().equals("AddMeal")){
+            userBMR -= Integer.parseInt(data.getStringExtra("CalsEaten"));
             TextView RemainingCalsText = (TextView) findViewById(R.id.remaining_cal_id);
             RemainingCalsText.setText(String.valueOf((int)userBMR));
         }
