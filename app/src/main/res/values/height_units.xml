@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="height_units">
-        <item>ft</item>
-        <item>m</item>
+        <item>in</item>
+        <item>cm</item>
     </string-array>
 </resources>

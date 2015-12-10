@@ -20,7 +20,8 @@
             android:layout_height="30dp"
             android:background="@drawable/settings"
             android:layout_alignParentRight="true"
-            android:id="@+id/settings_button"/>
+            android:id="@+id/settings_button"
+            android:onClick="onSettingsButton"/>
         //Image button needs to be edited to go to settings page.
 
         <TextView android:text="@string/hi"
@@ -63,7 +64,8 @@
         android:layout_gravity="center"
         android:text="@string/add_meal"
         android:textSize="25sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:onClick="onAddMeal"/>
 
     <Button
         android:layout_width="185dp"

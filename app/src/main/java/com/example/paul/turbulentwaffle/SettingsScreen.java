@@ -172,6 +172,7 @@ public class SettingsScreen extends Activity{
         }else{
             Intent goingBack = new Intent();
 
+            goingBack.putExtra("PageName","Settings");
             goingBack.putExtra("DispName",dispName.getText().toString());
             goingBack.putExtra("BDayDay",bDayDay.getText().toString());
             goingBack.putExtra("BDayMonth",monthSelected);
