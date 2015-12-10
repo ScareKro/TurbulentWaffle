@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class SettingsScreen extends Activity{
     private Spinner birthDateSpinner,
+            genderSpinner,
             weightSpinner,
             heightSpinner,
             goalWeightSpinner;
@@ -24,6 +25,7 @@ public class SettingsScreen extends Activity{
             goalText;
 
     private String monthSelected,
+            genderSelected,
             currWeightUnitSelected,
             heightUnitSelected,
             goalWeightUnitSelected;
@@ -42,6 +44,7 @@ public class SettingsScreen extends Activity{
 
     public void initializeSpinners(){
         birthDateSpinner=(Spinner)findViewById(R.id.month_date_spinner_id); //birth month
+        genderSpinner=(Spinner)findViewById(R.id.gender_spinner_id); //male or female
         weightSpinner=(Spinner)findViewById(R.id.weight_unit_spinner_id); //kg or lbs
         heightSpinner=(Spinner)findViewById(R.id.height_unit_spinner_id); //ft or m
         goalWeightSpinner=(Spinner)findViewById(R.id.goal_weight_unit_spinner_id); //kg or lbs
@@ -57,6 +60,24 @@ public class SettingsScreen extends Activity{
     }
 
     public void addItemsToUnitTypeSpinner(){
+        ArrayAdapter<CharSequence> monthSpinnerAdapter =    //Set the month spinner to include the months
+                ArrayAdapter.createFromResource(this,
+                        R.array.month_units,
+                        android.R.layout.simple_spinner_item);
+        monthSpinnerAdapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
+
+        birthDateSpinner.setAdapter(monthSpinnerAdapter);
+
+        ArrayAdapter<CharSequence> genderSpinnerAdapter = //Set gender spinner to include male and female
+                ArrayAdapter.createFromResource(this,
+                        R.array.gender_values,
+                        android.R.layout.simple_spinner_item);
+        genderSpinnerAdapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
+
+        genderSpinner.setAdapter(genderSpinnerAdapter);
+
         ArrayAdapter<CharSequence> weightSpinnerAdapter = //Set the weight spinners to go between
                 ArrayAdapter.createFromResource(this,     //lbs and kg
                         R.array.weight_units,
@@ -67,48 +88,39 @@ public class SettingsScreen extends Activity{
         weightSpinner.setAdapter(weightSpinnerAdapter);
         goalWeightSpinner.setAdapter(weightSpinnerAdapter);
 
-        ArrayAdapter<CharSequence> monthSpinnerAdapter =    //Set the month spinner to include the months
-                ArrayAdapter.createFromResource(this,
-                        R.array.month_units,
-                        android.R.layout.simple_spinner_item);
-        weightSpinnerAdapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item);
-
-        birthDateSpinner.setAdapter(monthSpinnerAdapter);
-
         ArrayAdapter<CharSequence> heightSpinnerAdapter =   //allow height to choose between
                 ArrayAdapter.createFromResource(this,       //ft and m
                         R.array.height_units,
                         android.R.layout.simple_spinner_item);
-        weightSpinnerAdapter.setDropDownViewResource(
+        heightSpinnerAdapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
 
         heightSpinner.setAdapter(heightSpinnerAdapter);
     }
 
     public void addListenerToUnitTypeSpinner() {
-        weightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currWeightUnitSelected = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
-        });
-        goalWeightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                goalWeightUnitSelected = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
-        });
         birthDateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 monthSelected = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
+        });
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                genderSelected = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
+        });
+        weightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                currWeightUnitSelected = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -123,51 +135,64 @@ public class SettingsScreen extends Activity{
             @Override
             public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
         });
+        goalWeightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                goalWeightUnitSelected = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
+        });
     }
     public void onSubmitProfile(View view){
-        int pass = 1;
+        boolean pass = true;
         String warning = "You have unfilled fields:\n";
         if(dispName.getText().toString().isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Display Name\n";
         }
         if(bDayDay.getText().toString().isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Birth Day\n";
         }
         if(monthSelected.isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Birth Month\n";
         }
         if(bDayYear.getText().toString().isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Birth Year\n";
         }
+        if(genderSelected.isEmpty()){
+            pass = false;
+            warning+="Gender\n";
+        }
         if(weightText.getText().toString().isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Current Weight\n";
         }
         if(currWeightUnitSelected.isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Units for Current Weight\n";
         }
         if(heightText.getText().toString().isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Height\n";
         }
         if(heightUnitSelected.isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Height Units\n";
         }
         if(goalText.getText().toString().isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Goal Weight\n";
         }
         if(goalWeightUnitSelected.isEmpty()){
-            pass = 0;
+            pass = false;
             warning+="Goal Weight Units\n";
         }
-        if(pass==0){
+        if(pass){
             Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
         }else{
             Intent goingBack = new Intent();
@@ -177,6 +202,7 @@ public class SettingsScreen extends Activity{
             goingBack.putExtra("BDayDay",bDayDay.getText().toString());
             goingBack.putExtra("BDayMonth",monthSelected);
             goingBack.putExtra("BDayYear",bDayYear.getText().toString());
+            goingBack.putExtra("Gender",genderSelected);
             goingBack.putExtra("CurrWeight",weightText.getText().toString());
             goingBack.putExtra("CurrWeightUnit", currWeightUnitSelected);
             goingBack.putExtra("Height",heightText.getText().toString());

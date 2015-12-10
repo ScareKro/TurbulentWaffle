@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,10 +16,11 @@ public class MainActivity extends AppCompatActivity {
             birthDay,
             birthMonth,
             birthYear,
+            gender,
             currWeightUnit,
             heightUnit,
             goalWeightUnit;
-    int age;
+    int age, genderConstant;
     double heightCM, weightKG, userBMR, goalWeightKG, remainingCals, todayCals;
 
     @Override
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         setContentView(R.layout.activity_main);
-        if(data.getStringExtra("PageName").toString().equals("Settings")) {
+        if(data.getStringExtra("PageName").equals("Settings")) {
             accPresent = true;
             TextView usersGreetingMessage = (TextView) findViewById(R.id.hi_text);
             displayName = data.getStringExtra("DispName"); //Set the greeting message to greet them by name.
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             birthDay = data.getStringExtra("BDayDay");
             birthMonth = data.getStringExtra("BDayMonth");
             birthYear = data.getStringExtra("BDayYear");
+            gender = data.getStringExtra("Gender");
             weightKG = Double.parseDouble(data.getStringExtra("CurrWeight"));
             currWeightUnit = data.getStringExtra("CurrWeightUnit");
             heightCM = Double.parseDouble(data.getStringExtra("Height"));
@@ -65,16 +66,25 @@ public class MainActivity extends AppCompatActivity {
             age = year - userBirthYear;
             //Calculate the users height and weight in metric.
             if (currWeightUnit.equals("lbs")) {
-                weightKG /= 2.2;
+                weightKG *= 0.45359237;
             }
             if (heightUnit.equals("in")) {
                 heightCM *= 2.54;
             }
             if (goalWeightUnit.equals("lbs")) {
-                goalWeightKG /= 2.2;
+                goalWeightKG *= 0.45359237;
             }
+
+            //Determine gender constant for BMR formula
+            if(gender.equals("Male")){
+                genderConstant = 5;
+            }
+            if(gender.equals("Female")){
+                genderConstant = -161;
+            }
+
             //Calculate the calories burned at rest
-            userBMR = (10 * weightKG) + (6.25 * heightCM) - (5.0 * (double) age) + 5;
+            userBMR = (10 * weightKG) + (6.25 * heightCM) - (5.0 * (double) age) + genderConstant;
 
             TextView RemainingCalsText = (TextView) findViewById(R.id.remaining_cal_id);
             RemainingCalsText.setText(String.valueOf(userBMR));
