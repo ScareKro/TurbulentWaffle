@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if(data.getStringExtra("PageName").equals("Settings")) {
             accPresent = true;
-            TextView usersGreetingMessage = (TextView) findViewById(R.id.hi_text);
+//            TextView usersGreetingMessage = (TextView) findViewById(R.id.hi_text);
             displayName = data.getStringExtra("DispName"); //Set the greeting message to greet them by name.
-            usersGreetingMessage.setText(getString(R.string.hi) + " " + displayName + "!");
+//            usersGreetingMessage.setText(getString(R.string.hi) + " " + displayName + "!");
 
             //Grab the other values.----------------------------------------
             birthDay = data.getStringExtra("BDayDay");
@@ -93,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
             TextView RemainingCalsText = (TextView) findViewById(R.id.remaining_cal_id);
             RemainingCalsText.setText(String.valueOf((int)userBMR));
         }
+        TextView usersGreetingMessage = (TextView) findViewById(R.id.hi_text);
+        usersGreetingMessage.setText(getString(R.string.hi) + " " + displayName + "!");
     }
 
     public void onSettingsButton(View view) {
