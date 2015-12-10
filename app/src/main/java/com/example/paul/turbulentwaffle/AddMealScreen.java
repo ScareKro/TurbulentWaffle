@@ -93,14 +93,15 @@ public class AddMealScreen extends Activity{
         String warning = "You must select a meal!";
 //        nameNewMealString = nameNewMeal.toString();
 //        calPerServe = Integer.parseInt(calPerServing.toString());
-        if (priorMealString.isEmpty() && /*nameNewMealString.isEmpty()*/nameNewMeal.toString().isEmpty()) {
+        if (priorMealString.isEmpty() && nameNewMeal.toString().equals("")) {
             Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
         } else if (!priorMealString.isEmpty()) {
             /*TODO*/
             //-----------temp code--------------------
             Intent goingBack = new Intent();
             goingBack.putExtra("PageName", "AddMeal");
-            goingBack.putExtra("CalsEaten", 500);
+            goingBack.putExtra("CalsEaten", "500");
+            setResult(RESULT_OK,goingBack);
             finish();
             //-----------------------------------------
         } else if (!nameNewMeal.toString().isEmpty() && calPerServing.toString().isEmpty()) {
@@ -111,7 +112,7 @@ public class AddMealScreen extends Activity{
             calTotal = calPerServe*newServe;
 
             goingBack.putExtra("PageName", "AddMeal");
-            goingBack.putExtra("CalsEaten",calTotal);
+            goingBack.putExtra("CalsEaten",Integer.toString(calTotal));
 
             setResult(RESULT_OK, goingBack);
             finish();
