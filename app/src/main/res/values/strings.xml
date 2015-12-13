@@ -20,4 +20,16 @@
     <string name="cal_per_serving">Calories per serving:</string>
     <string name="next">Next</string>
     <string name="submit">Submit</string>
+    //---------------Persistent Settings------------------------------
+    <string name="PREF_FILE">APP_PREF_FILE</string>
+    <string name="USER_NAME">APP_USER_NAME</string>
+    <string name="ACC_EXIST">APP_ACC_EXIST</string>
+    <string name="USER_BDAY">APP_USER_BDAY</string>
+    <string name="CURR_DATE">APP_CURR_DATE</string>
+    <string name="USER_GENDER">APP_USER_GENDER</string>
+    <string name="GENDER_CONST">APP_GENDER_CONSTANT</string>
+    <string name="USER_WEIGHT">APP_USER_WEIGHT</string>
+    <string name="USER_HEIGHT">APP_USER_HEIGHT</string>
+    <string name="GOAL_WEIGHT">APP_GOAL_WEIGHT</string>
+    <string name="USER_BMR">APP_USER_BMR</string>
 </resources>

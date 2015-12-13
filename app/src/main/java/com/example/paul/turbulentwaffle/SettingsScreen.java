@@ -2,6 +2,7 @@ package com.example.paul.turbulentwaffle;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -195,6 +196,7 @@ public class SettingsScreen extends Activity{
         if(!pass){
             Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
         }else{
+
             Intent goingBack = new Intent();
 
             goingBack.putExtra("PageName","Settings");
