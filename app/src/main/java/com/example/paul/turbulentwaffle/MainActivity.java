@@ -103,11 +103,10 @@ public class MainActivity extends AppCompatActivity {
             }
             sharedEditor.putLong(getString(R.string.GOAL_WEIGHT),
                     Double.doubleToLongBits(goalWeightKG));
-
             //Determine gender constant for BMR formula
-            if(getString(R.string.USER_GENDER).equals("Male")){
+            if(data.getStringExtra("Gender").equals("Male")){
                 sharedEditor.putInt(getString(R.string.GENDER_CONST),5);
-            } else if(getString(R.string.USER_GENDER).equals("Female")){
+            } else if(data.getStringExtra("Gender").equals("Female")){
                 sharedEditor.putInt(getString(R.string.GENDER_CONST),-161);
             }
             if(!sharedEditor.commit()){
@@ -135,13 +134,13 @@ public class MainActivity extends AppCompatActivity {
         Calendar bdayCalendar = Calendar.getInstance();
         bdayCalendar.setTime(bDay);
         int age = tempCalendar.get(Calendar.YEAR) - bdayCalendar.get(Calendar.YEAR);
-        if (tempCalendar.get(Calendar.MONTH) > bdayCalendar.get(Calendar.MONTH) ||
-                (
-                        tempCalendar.get(Calendar.MONTH) == bdayCalendar.get(Calendar.MONTH) &&
-                        tempCalendar.get(Calendar.DATE) > bdayCalendar.get(Calendar.DATE))
-                ){
-            age--;
-        }
+//        if (tempCalendar.get(Calendar.MONTH) > bdayCalendar.get(Calendar.MONTH) ||
+//                (
+//                        tempCalendar.get(Calendar.MONTH) == bdayCalendar.get(Calendar.MONTH) &&
+//                        tempCalendar.get(Calendar.DATE) > bdayCalendar.get(Calendar.DATE))
+//                ){
+//            age--;
+//        }
         //Calculate and save the BMR
         sharedEditor.putLong(
                 getString(R.string.USER_BMR),
