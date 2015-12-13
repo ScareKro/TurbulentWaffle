@@ -134,13 +134,13 @@ public class MainActivity extends AppCompatActivity {
         Calendar bdayCalendar = Calendar.getInstance();
         bdayCalendar.setTime(bDay);
         int age = tempCalendar.get(Calendar.YEAR) - bdayCalendar.get(Calendar.YEAR);
-//        if (tempCalendar.get(Calendar.MONTH) > bdayCalendar.get(Calendar.MONTH) ||
-//                (
-//                        tempCalendar.get(Calendar.MONTH) == bdayCalendar.get(Calendar.MONTH) &&
-//                        tempCalendar.get(Calendar.DATE) > bdayCalendar.get(Calendar.DATE))
-//                ){
-//            age--;
-//        }
+        if (tempCalendar.get(Calendar.MONTH) > bdayCalendar.get(Calendar.MONTH) ||
+                (
+                        tempCalendar.get(Calendar.MONTH) == bdayCalendar.get(Calendar.MONTH) &&
+                        tempCalendar.get(Calendar.DATE) > bdayCalendar.get(Calendar.DATE))
+                ){
+            age--;
+        }
         //Calculate and save the BMR
         sharedEditor.putLong(
                 getString(R.string.USER_BMR),
