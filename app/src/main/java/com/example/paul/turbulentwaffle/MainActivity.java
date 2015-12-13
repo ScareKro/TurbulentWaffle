@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             currWeightUnit = data.getStringExtra("CurrWeightUnit");
             heightCM = Double.parseDouble(data.getStringExtra("Height"));
             heightUnit = data.getStringExtra("HeightUnit");
-            goalWeightKG = Double.parseDouble(data.getStringExtra("GoalWeight"));
             goalWeightUnit = data.getStringExtra("GoalWeightUnit");
             //--------------------------------------------------------------
 
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            assert date != null;
+//            assert date != null;
             sharedEditor.putLong(getString(R.string.USER_BDAY), date.getTime());
             //Save the User's gender.
 

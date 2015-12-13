@@ -39,8 +39,8 @@ public class AddMealScreen extends Activity{
         addListenerToUnitTypeSpinner();
 
         if(sharedPreferences.getString(getString(R.string.ITEM_LIST), "3103445").equals("3103445")){
-            sharedEditor.putString(getString(R.string.ITEM_LIST),"|");
-            sharedEditor.putString(getString(R.string.CAL_LIST),"|");
+            sharedEditor.putString(getString(R.string.ITEM_LIST),"&");
+            sharedEditor.putString(getString(R.string.CAL_LIST),"&");
             sharedEditor.commit();
         }
     }
@@ -64,7 +64,8 @@ public class AddMealScreen extends Activity{
         priorServings.setAdapter(servingSpinnerAdapter);
         newServings.setAdapter(servingSpinnerAdapter);
 
-        String[] spinnerArray = sharedPreferences.getString(getString(R.string.ITEM_LIST),"").split("|",-1);
+        String spinnerString = sharedPreferences.getString(getString(R.string.ITEM_LIST), "");
+        String[] spinnerArray = spinnerString.split("&");
 
         ArrayAdapter<String> priorSpinnerAdapter =
                 new ArrayAdapter<>(this,   android.R.layout.simple_spinner_item, spinnerArray);
@@ -138,8 +139,8 @@ public class AddMealScreen extends Activity{
 
             String currNameList = sharedPreferences.getString(getString(R.string.ITEM_LIST),"");
             String currCalorieList = sharedPreferences.getString(getString(R.string.CAL_LIST),"");
-            currNameList+=nameNewMeal.getText().toString()+"|";
-            currCalorieList+=calPerServing.getText().toString()+"|";
+            currNameList+=nameNewMeal.getText().toString()+"&";
+            currCalorieList+=calPerServing.getText().toString()+"&";
             sharedEditor.putString(getString(R.string.ITEM_LIST), currNameList);
             sharedEditor.putString(getString(R.string.CAL_LIST), currCalorieList);
             sharedEditor.commit();

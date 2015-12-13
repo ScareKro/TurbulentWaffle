@@ -50,7 +50,7 @@ public class SettingsScreen extends Activity{
         genderSpinner=(Spinner)findViewById(R.id.gender_spinner_id); //male or female
         weightSpinner=(Spinner)findViewById(R.id.weight_unit_spinner_id); //kg or lbs
         heightSpinner=(Spinner)findViewById(R.id.height_unit_spinner_id); //ft or m
-        goalWeightAmountSpinner=(Spinner)findViewById(R.id.height_unit_spinner_id); //-2:2:0.5
+        goalWeightAmountSpinner=(Spinner)findViewById(R.id.goal_weight_amount_spinner_id); //-2:2:0.5
         goalWeightUnitsSpinner=(Spinner)findViewById(R.id.goal_weight_unit_spinner_id); //kg or lbs
         activityAmountSpinner =(Spinner)findViewById(R.id.activity_amount_spinner_id); //general level of daily activity
     }
