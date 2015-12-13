@@ -12,7 +12,8 @@
     <string name="year">Year</string>
     <string name="weight_be_honest">Weight (Be Honest):</string>
     <string name="height_request">Height:</string>
-    <string name="goal_weight">Goal Weight:</string>
+    <string name="goal_weight">Weekly weight change goal:</string>
+    <string name="general_activity">How active are you?</string>
     <string name="select_prior_meal">Select Prior Meal:</string>
     <string name="big_or">--------OR--------</string>
     <string name="new_meal_selection">New Meal Selection:</string>

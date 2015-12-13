@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/scrollView"
+    android:layout_gravity="center_horizontal"
+    android:fillViewport="true">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -23,7 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+        android:paddingTop="10dp"
         android:text="@string/gender"
         android:textSize="25sp"
         android:textStyle="bold"/>
@@ -36,7 +43,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+        android:paddingTop="10dp"
         android:text="@string/birth_date"
         android:textSize="25sp"
         android:textStyle="bold"/>
@@ -70,7 +77,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+        android:paddingTop="10dp"
         android:text="@string/weight_be_honest"
         android:textSize="25sp"
         android:textStyle="bold"/>
@@ -95,7 +102,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+        android:paddingTop="10dp"
         android:text="@string/height_request"
         android:textSize="25sp"
         android:textStyle="bold"/>
@@ -120,7 +127,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
+        android:paddingTop="10dp"
         android:text="@string/goal_weight"
         android:textSize="25sp"
         android:textStyle="bold"/>
@@ -128,12 +135,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <EditText
+
+        <Spinner
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:textSize="25sp"
-            android:id="@+id/goal_weight_number_id"
-            android:background="#b4e2ff"/>
+            android:id="@+id/goal_weight_amount_spinner_id"
+            android:background="#b4e2ff" />
+
         <Spinner
             android:layout_width="100dp"
             android:layout_height="35dp"
@@ -142,12 +150,27 @@
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="@string/general_activity"
+        android:textSize="25sp"
+        android:textStyle="bold"/>
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:id="@+id/activity_amount_spinner_id"
+        android:background="#b4e2ff"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
+        android:layout_marginTop="10dp"
         android:text="Submit"
         android:textSize="25sp"
         android:onClick="onSubmitProfile"/>
 
 </LinearLayout>
+</ScrollView>

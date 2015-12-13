@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -82,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            assert date != null;
             sharedEditor.putLong(getString(R.string.USER_BDAY), date.getTime());
             //Save the User's gender.
 
@@ -134,13 +134,13 @@ public class MainActivity extends AppCompatActivity {
         Calendar bdayCalendar = Calendar.getInstance();
         bdayCalendar.setTime(bDay);
         int age = tempCalendar.get(Calendar.YEAR) - bdayCalendar.get(Calendar.YEAR);
-//        if (tempCalendar.get(Calendar.MONTH) > bdayCalendar.get(Calendar.MONTH) ||
-//                (
-//                        tempCalendar.get(Calendar.MONTH) == bdayCalendar.get(Calendar.MONTH) &&
-//                        tempCalendar.get(Calendar.DATE) > bdayCalendar.get(Calendar.DATE))
-//                ){
-//            age--;
-//        }
+        if (tempCalendar.get(Calendar.MONTH) > bdayCalendar.get(Calendar.MONTH) ||
+                (
+                        tempCalendar.get(Calendar.MONTH) == bdayCalendar.get(Calendar.MONTH) &&
+                        tempCalendar.get(Calendar.DATE) > bdayCalendar.get(Calendar.DATE))
+                ){
+            age--;
+        }
         //Calculate and save the BMR
         sharedEditor.putLong(
                 getString(R.string.USER_BMR),
@@ -164,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
         final int result = 1;
         startActivityForResult(getNameScreenIntent, result);
     }
-
 
     public void onAddMeal(View view) {
         Intent getNameScreenIntent = new Intent(this,AddMealScreen.class);

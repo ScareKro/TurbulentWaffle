@@ -2,7 +2,6 @@ package com.example.paul.turbulentwaffle;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,20 +15,23 @@ public class SettingsScreen extends Activity{
             genderSpinner,
             weightSpinner,
             heightSpinner,
-            goalWeightSpinner;
+            goalWeightAmountSpinner,
+            goalWeightUnitsSpinner,
+            activityAmountSpinner;
 
     private EditText dispName,
             bDayDay,
             bDayYear,
             weightText,
-            heightText,
-            goalText;
+            heightText;
 
     private String monthSelected,
             genderSelected,
             currWeightUnitSelected,
             heightUnitSelected,
-            goalWeightUnitSelected;
+            goalWeightAmountSelected,
+            goalWeightUnitSelected,
+            activityAmountSelected;
 
 
     @Override
@@ -48,7 +50,9 @@ public class SettingsScreen extends Activity{
         genderSpinner=(Spinner)findViewById(R.id.gender_spinner_id); //male or female
         weightSpinner=(Spinner)findViewById(R.id.weight_unit_spinner_id); //kg or lbs
         heightSpinner=(Spinner)findViewById(R.id.height_unit_spinner_id); //ft or m
-        goalWeightSpinner=(Spinner)findViewById(R.id.goal_weight_unit_spinner_id); //kg or lbs
+        goalWeightAmountSpinner=(Spinner)findViewById(R.id.height_unit_spinner_id); //-2:2:0.5
+        goalWeightUnitsSpinner=(Spinner)findViewById(R.id.goal_weight_unit_spinner_id); //kg or lbs
+        activityAmountSpinner =(Spinner)findViewById(R.id.activity_amount_spinner_id); //general level of daily activity
     }
 
     public void initializeTextViews(){
@@ -57,7 +61,6 @@ public class SettingsScreen extends Activity{
         bDayYear=(EditText)findViewById(R.id.birth_year_id); //The year of their birth
         weightText=(EditText)findViewById(R.id.weight_number_id); //starting weight
         heightText=(EditText)findViewById(R.id.height_number_id); //height
-        goalText=(EditText)findViewById(R.id.goal_weight_number_id); //goal weight
     }
 
     public void addItemsToUnitTypeSpinner(){
@@ -79,15 +82,24 @@ public class SettingsScreen extends Activity{
 
         genderSpinner.setAdapter(genderSpinnerAdapter);
 
-        ArrayAdapter<CharSequence> weightSpinnerAdapter = //Set the weight spinners to go between
+        ArrayAdapter<CharSequence> weightAmountSpinnerAdapter =
+                ArrayAdapter.createFromResource(this,
+                        R.array.weight_amounts,
+                        android.R.layout.simple_spinner_item);
+        weightAmountSpinnerAdapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
+
+        goalWeightAmountSpinner.setAdapter(weightAmountSpinnerAdapter);
+
+        ArrayAdapter<CharSequence> weightUnitsSpinnerAdapter = //Set the weight spinners to go between
                 ArrayAdapter.createFromResource(this,     //lbs and kg
                         R.array.weight_units,
                         android.R.layout.simple_spinner_item);
-        weightSpinnerAdapter.setDropDownViewResource(
+        weightUnitsSpinnerAdapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
 
-        weightSpinner.setAdapter(weightSpinnerAdapter);
-        goalWeightSpinner.setAdapter(weightSpinnerAdapter);
+        weightSpinner.setAdapter(weightUnitsSpinnerAdapter);
+        goalWeightUnitsSpinner.setAdapter(weightUnitsSpinnerAdapter);
 
         ArrayAdapter<CharSequence> heightSpinnerAdapter =   //allow height to choose between
                 ArrayAdapter.createFromResource(this,       //ft and m
@@ -97,6 +109,13 @@ public class SettingsScreen extends Activity{
                 android.R.layout.simple_spinner_dropdown_item);
 
         heightSpinner.setAdapter(heightSpinnerAdapter);
+
+        ArrayAdapter<CharSequence> activitySpinnerAdapter =
+                ArrayAdapter.createFromResource(this,
+                        R.array.activity_levels,
+                        android.R.layout.simple_spinner_item);
+
+        activityAmountSpinner.setAdapter(activitySpinnerAdapter);
     }
 
     public void addListenerToUnitTypeSpinner() {
@@ -107,8 +126,9 @@ public class SettingsScreen extends Activity{
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
+            public void onNothingSelected(AdapterView<?> parent) {/*If this happened, IT'S A TRAP!*/}
         });
+
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -116,8 +136,9 @@ public class SettingsScreen extends Activity{
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
+            public void onNothingSelected(AdapterView<?> parent) {/*If this happened, IT'S A TRAP!*/}
         });
+
         weightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -125,8 +146,9 @@ public class SettingsScreen extends Activity{
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
+            public void onNothingSelected(AdapterView<?> parent) {/*If this happened, IT'S A TRAP!*/}
         });
+
         heightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -134,16 +156,37 @@ public class SettingsScreen extends Activity{
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
+            public void onNothingSelected(AdapterView<?> parent) {/*If this happened, IT'S A TRAP!*/}
         });
-        goalWeightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        goalWeightAmountSpinner.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                goalWeightAmountSelected = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {/*If this happened, IT'S A TRAP!*/}
+        });
+
+        goalWeightUnitsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 goalWeightUnitSelected = parent.getItemAtPosition(position).toString();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {/*TODO... NEVER*/}
+            public void onNothingSelected(AdapterView<?> parent) {/*If this happened, IT'S A TRAP!*/}
+        });
+
+        activityAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                activityAmountSelected = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {/*If this happened, IT'S A TRAP!*/}
         });
     }
     public void onSubmitProfile(View view){
@@ -185,13 +228,17 @@ public class SettingsScreen extends Activity{
             pass = false;
             warning+="Height Units\n";
         }
-        if(goalText.getText().toString().isEmpty()){
+        if(goalWeightAmountSelected.isEmpty()){
             pass = false;
-            warning+="Goal Weight\n";
+            warning+="Weekly Weight Goal";
         }
         if(goalWeightUnitSelected.isEmpty()){
             pass = false;
             warning+="Goal Weight Units\n";
+        }
+        if(activityAmountSelected.isEmpty()){
+            pass = false;
+            warning+="Level of Activity";
         }
         if(!pass){
             Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
@@ -209,10 +256,11 @@ public class SettingsScreen extends Activity{
             goingBack.putExtra("CurrWeightUnit", currWeightUnitSelected);
             goingBack.putExtra("Height",heightText.getText().toString());
             goingBack.putExtra("HeightUnit", heightUnitSelected);
-            goingBack.putExtra("GoalWeight",goalText.getText().toString());
+            goingBack.putExtra("GoalWeightAmount", goalWeightAmountSelected);
             goingBack.putExtra("GoalWeightUnit", goalWeightUnitSelected);
+            goingBack.putExtra("ActivityLevel", activityAmountSelected);
 
-            setResult(RESULT_OK,goingBack);
+            setResult(RESULT_OK, goingBack);
             finish();
         }
     }
