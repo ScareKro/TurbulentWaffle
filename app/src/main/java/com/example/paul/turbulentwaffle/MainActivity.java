@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,7 +17,6 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private static boolean accPresent = false; /*TODO replace with perm mem*/
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedEditor;
 
