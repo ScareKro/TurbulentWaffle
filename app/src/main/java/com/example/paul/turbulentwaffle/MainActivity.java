@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
     String  currWeightUnit,
             heightUnit,
             goalWeightUnit;
-    double heightCM, weightKG, userBMR, goalWeightKG, todayCals;
+    double heightCM, weightKG, userBMR, goalWeightKG;
+    int todayCals = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
             }
         }else if(data.getStringExtra("PageName").equals("AddMeal")){
-            userBMR -= Integer.parseInt(data.getStringExtra("CalsEaten"));
+            todayCals+=Integer.parseInt(data.getStringExtra("CalsEaten"));
         }
         //Set the greeting message with display name.
         TextView usersGreetingMessage = (TextView) findViewById(R.id.hi_text);
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         Calendar bdayCalendar = Calendar.getInstance();
         bdayCalendar.setTime(bDay);
         int age = tempCalendar.get(Calendar.YEAR) - bdayCalendar.get(Calendar.YEAR);
-        if (tempCalendar.get(Calendar.MONTH) > bdayCalendar.get(Calendar.MONTH) ||
+        if (bdayCalendar.get(Calendar.MONTH) > tempCalendar.get(Calendar.MONTH) ||
                 (
                         tempCalendar.get(Calendar.MONTH) == bdayCalendar.get(Calendar.MONTH) &&
                         tempCalendar.get(Calendar.DATE) > bdayCalendar.get(Calendar.DATE))

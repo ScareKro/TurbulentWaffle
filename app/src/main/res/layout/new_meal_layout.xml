@@ -99,7 +99,7 @@
             android:layout_alignParentRight="true"
             android:background="#b4e2ff"
             android:textSize="25sp"
-            android:id="@+id/cal_per_serving_spinner"/>
+            android:id="@+id/cal_per_serving"/>
     </RelativeLayout>
 
     <RelativeLayout
