@@ -123,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
         }
         //Set the greeting message with display name.
         TextView usersGreetingMessage = (TextView) findViewById(R.id.hi_text);
-        usersGreetingMessage.setText(getString(R.string.hi) + " " +
-                sharedPreferences.getString(getString(R.string.USER_NAME), "") + "!");
+        usersGreetingMessage.setText(getString(R.string.hi)+" "+
+                sharedPreferences.getString(getString(R.string.USER_NAME),"")+"!");
         //Set remaining calories.
         calcBMR();
         userBMR = Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_BMR),1));
