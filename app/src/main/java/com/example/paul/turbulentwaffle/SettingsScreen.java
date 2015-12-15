@@ -192,6 +192,7 @@ public class SettingsScreen extends Activity{
     public void onSubmitProfile(View view){
         boolean pass = true;
         String warning = "You have unfilled fields:\n";
+        //Create warning message to be displayed if a field is left blank.
         if(dispName.getText().toString().isEmpty()){
             pass = false;
             warning+="Display Name\n";
@@ -200,52 +201,31 @@ public class SettingsScreen extends Activity{
             pass = false;
             warning+="Birth Day\n";
         }
-        if(monthSelected.isEmpty()){
-            pass = false;
-            warning+="Birth Month\n";
-        }
         if(bDayYear.getText().toString().isEmpty()){
             pass = false;
             warning+="Birth Year\n";
-        }
-        if(genderSelected.isEmpty()){
-            pass = false;
-            warning+="Gender\n";
         }
         if(weightText.getText().toString().isEmpty()){
             pass = false;
             warning+="Current Weight\n";
         }
-        if(currWeightUnitSelected.isEmpty()){
-            pass = false;
-            warning+="Units for Current Weight\n";
-        }
         if(heightText.getText().toString().isEmpty()){
             pass = false;
             warning+="Height\n";
         }
-        if(heightUnitSelected.isEmpty()){
-            pass = false;
-            warning+="Height Units\n";
-        }
         if(goalWeightAmountSelected.isEmpty()){
             pass = false;
             warning+="Weekly Weight Goal";
-        }
-        if(goalWeightUnitSelected.isEmpty()){
-            pass = false;
-            warning+="Goal Weight Units\n";
-        }
-        if(activityAmountSelected.isEmpty()){
-            pass = false;
-            warning+="Level of Activity";
-        }
+        } //warning is edited to specify which fields were ignored.
+        //spinners cannot be left blank as they have a default value
+        //so those potential warnings were removed.
         if(!pass){
             Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
+            //Only displays if a field was ignored.
         }else{
 
             Intent goingBack = new Intent();
-
+            //Prepares to go to Main page if all fields filled in.
             goingBack.putExtra("PageName","Settings");
             goingBack.putExtra("DispName",dispName.getText().toString());
             goingBack.putExtra("BDayDay",bDayDay.getText().toString());
@@ -259,9 +239,9 @@ public class SettingsScreen extends Activity{
             goingBack.putExtra("GoalWeightAmount", goalWeightAmountSelected);
             goingBack.putExtra("GoalWeightUnit", goalWeightUnitSelected);
             goingBack.putExtra("ActivityLevel", activityAmountSelected);
-
+            //Saves all fields to be returned to main page.
             setResult(RESULT_OK, goingBack);
-            finish();
+            finish(); //done.
         }
     }
 }
