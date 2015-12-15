@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="activityTypes">
+        <item>Bicycling</item>
+        <item>Conditioning Exercise</item>
+        <item>Dancing</item>
+        <item>Fishing and Hunting</item>
+        <item>Home Activities</item>
+        <item>Home Repair</item>
+        <item>Inactivity Quiet</item>
+        <item>Lawn and Garden</item>
+        <item>Miscellaneous</item>
+        <item>Music Playing</item>
+        <item>Occupation</item>
+        <item>Running</item>
+        <item>Self Care</item>
+        <item>Sexual Activity</item>
+        <item>Sports</item>
+        <item>Transportation</item>
+        <item>Walking</item>
+        <item>Water Activities</item>
+        <item>Winter Activities</item>
+        <item>Religious Activities</item>
+        <item>Volunteer Activities</item>
+    </string-array>
+</resources>

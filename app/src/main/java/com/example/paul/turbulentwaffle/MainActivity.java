@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 sharedPreferences.getString(getString(R.string.USER_NAME),"")+"!");
         //Set remaining calories.
         calcBMR();
-        userBMR = Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_BMR),1));
+        userBMR = Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_BMR), 1));
         TextView RemainingCalsText = (TextView) findViewById(R.id.remaining_cal_id);
         RemainingCalsText.setText(String.valueOf((int)(userBMR-todayCals)));
     }
@@ -166,7 +166,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAddMeal(View view) {
-        Intent getNameScreenIntent = new Intent(this,AddMealScreen.class);
+        Intent getNameScreenIntent = new Intent(this, AddMealScreen.class);
+        final int result = 1;
+        startActivityForResult(getNameScreenIntent, result);
+    }
+    public void onActivityButton(View view) {
+        Intent getNameScreenIntent = new Intent(this, ExerciseScreen.class);
         final int result = 1;
         startActivityForResult(getNameScreenIntent, result);
     }
