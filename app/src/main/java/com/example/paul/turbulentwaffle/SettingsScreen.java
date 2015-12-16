@@ -10,6 +10,9 @@ import android.widget.Spinner;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public class SettingsScreen extends Activity{
     private Spinner birthDateSpinner,
             genderSpinner,
@@ -31,8 +34,17 @@ public class SettingsScreen extends Activity{
             heightUnitSelected,
             goalWeightAmountSelected,
             goalWeightUnitSelected,
-            activityAmountSelected;
+            activityAmountSelected,
+            actLvlConstant;
 
+    Map<String, String> actLvlMap = new LinkedHashMap<>();
+
+    private void makeActList() {
+        for (int i = 0; i < (getResources().getStringArray(R.array.activity_levels).length); i++) {
+            actLvlMap.put(getResources().getStringArray(R.array.activity_levels)[i],
+                    getResources().getStringArray(R.array.actlvl_constants)[i]);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +55,7 @@ public class SettingsScreen extends Activity{
         initializeSpinners();
         addItemsToUnitTypeSpinner();
         addListenerToUnitTypeSpinner();
+        makeActList();
     }
 
     public void initializeSpinners(){
@@ -114,6 +127,8 @@ public class SettingsScreen extends Activity{
                 ArrayAdapter.createFromResource(this,
                         R.array.activity_levels,
                         android.R.layout.simple_spinner_item);
+        activitySpinnerAdapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item);
 
         activityAmountSpinner.setAdapter(activitySpinnerAdapter);
     }
@@ -159,7 +174,7 @@ public class SettingsScreen extends Activity{
             public void onNothingSelected(AdapterView<?> parent) {/*If this happened, IT'S A TRAP!*/}
         });
 
-        goalWeightAmountSpinner.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
+        goalWeightAmountSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 goalWeightAmountSelected = parent.getItemAtPosition(position).toString();
@@ -189,6 +204,7 @@ public class SettingsScreen extends Activity{
             public void onNothingSelected(AdapterView<?> parent) {/*If this happened, IT'S A TRAP!*/}
         });
     }
+
     public void onSubmitProfile(View view){
         boolean pass = true;
         String warning = "You have unfilled fields:\n";
@@ -222,10 +238,11 @@ public class SettingsScreen extends Activity{
         if(!pass){
             Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
             //Only displays if a field was ignored.
-        }else{
-
+        }
+        else{
             Intent goingBack = new Intent();
             //Prepares to go to Main page if all fields filled in.
+            actLvlConstant = actLvlMap.get(activityAmountSelected);
             goingBack.putExtra("PageName","Settings");
             goingBack.putExtra("DispName",dispName.getText().toString());
             goingBack.putExtra("BDayDay",bDayDay.getText().toString());
@@ -239,6 +256,7 @@ public class SettingsScreen extends Activity{
             goingBack.putExtra("GoalWeightAmount", goalWeightAmountSelected);
             goingBack.putExtra("GoalWeightUnit", goalWeightUnitSelected);
             goingBack.putExtra("ActivityLevel", activityAmountSelected);
+            goingBack.putExtra("ActivityLvlConstant", actLvlConstant);
             //Saves all fields to be returned to main page.
             setResult(RESULT_OK, goingBack);
             finish(); //done.

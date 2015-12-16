@@ -20,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
     String  currWeightUnit,
             heightUnit,
             goalWeightUnit;
-    double heightCM, weightKG, userBMR, goalWeightKG;
+    double heightCM, weightKG, userBMR, goalWeight, actLvlConstant, calorieChange;
+    final int caloriesPerPound = 500;
+    final double kilosPerPound = 0.45359237;
     int todayCals = 0;
 
     @Override
@@ -49,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
             final int result = 1;
             startActivityForResult(getNameScreenIntent, result);
         }
-
     }
 
     @Override
@@ -67,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
             currWeightUnit = data.getStringExtra("CurrWeightUnit");
             heightCM = Double.parseDouble(data.getStringExtra("Height"));
             heightUnit = data.getStringExtra("HeightUnit");
+            goalWeight = Double.parseDouble(data.getStringExtra("GoalWeightAmount"));
             goalWeightUnit = data.getStringExtra("GoalWeightUnit");
+            actLvlConstant = Double.parseDouble(data.getStringExtra("ActivityLvlConstant"));
             //--------------------------------------------------------------
 
             //Save the User's birthday.
@@ -81,34 +84,47 @@ public class MainActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-//            assert date != null;
+            assert date != null;
             sharedEditor.putLong(getString(R.string.USER_BDAY), date.getTime());
-            //Save the User's gender.
 
+            //Save the User's gender
+            //Determine gender constant for BMR formula
             sharedEditor.putString(getString(R.string.USER_GENDER), data.getStringExtra("Gender"));
+            if(data.getStringExtra("Gender").equals("Male")){
+                sharedEditor.putInt(getString(R.string.GENDER_CONST),5);
+            }
+            else {
+                sharedEditor.putInt(getString(R.string.GENDER_CONST),-161);
+            }
 
             //Calculate the users height and weight in metric.
             if (currWeightUnit.equals("lbs")) {
-                weightKG *= 0.45359237;
+                weightKG *= kilosPerPound;
             }
             sharedEditor.putLong(getString(R.string.USER_WEIGHT),
                     Double.doubleToLongBits(weightKG));
+
             if (heightUnit.equals("in")) {
                 heightCM *= 2.54;
             }
             sharedEditor.putLong(getString(R.string.USER_HEIGHT),
                     Double.doubleToLongBits(heightCM));
-            if (goalWeightUnit.equals("lbs")) {
-                goalWeightKG *= 0.45359237;
+
+            if(goalWeightUnit.equals("kg")) {
+                calorieChange = caloriesPerPound / kilosPerPound;
+            }
+            else {
+                calorieChange = 500;
             }
             sharedEditor.putLong(getString(R.string.GOAL_WEIGHT),
-                    Double.doubleToLongBits(goalWeightKG));
-            //Determine gender constant for BMR formula
-            if(data.getStringExtra("Gender").equals("Male")){
-                sharedEditor.putInt(getString(R.string.GENDER_CONST),5);
-            } else if(data.getStringExtra("Gender").equals("Female")){
-                sharedEditor.putInt(getString(R.string.GENDER_CONST),-161);
-            }
+                    Double.doubleToLongBits(goalWeight));
+
+            sharedEditor.putString(getString(R.string.ACTIVITY_LEVEL),
+                    data.getStringExtra("Activity Level"));
+
+            sharedEditor.putLong(getString(R.string.ACT_LVL_CONSTANT),
+                    Double.doubleToLongBits(actLvlConstant));
+
             if(!sharedEditor.commit()){
                 String toastMessage = "Error saving settings!";
                 Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
@@ -144,14 +160,18 @@ public class MainActivity extends AppCompatActivity {
         //Calculate and save the BMR
         sharedEditor.putLong(
                 getString(R.string.USER_BMR),
-                Double.doubleToLongBits(
+                Double.doubleToLongBits((
                                 (10*Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_WEIGHT),1)))+
                                 (6.25*Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_HEIGHT),1)))+
                                 (5.0*(double)age)+
-                                (sharedPreferences.getInt(getString(R.string.GENDER_CONST),1))
+                                (sharedPreferences.getInt(getString(R.string.GENDER_CONST),1)))*
+                                (Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.ACT_LVL_CONSTANT),1)))+
+                                (calorieChange*Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.GOAL_WEIGHT),1)))
                 )
         );
         //userBMR = (10 * weightKG) + (6.25 * heightCM) - (5.0 * (double) age) + genderConstant;
+        //multiply BMR by activity level constant for number of calories needed to maintain current weight
+        //then add or subtract 500 calories for every pound user wants to gain or lose
 
         if(!sharedEditor.commit()){
             String toastMessage = "Error saving settings!";

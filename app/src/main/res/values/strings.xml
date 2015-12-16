@@ -36,6 +36,8 @@
     <string name="USER_WEIGHT">APP_USER_WEIGHT</string>
     <string name="USER_HEIGHT">APP_USER_HEIGHT</string>
     <string name="GOAL_WEIGHT">APP_GOAL_WEIGHT</string>
+    <string name="ACTIVITY_LEVEL">APP_ACT_LEVEL</string>
+    <string name="ACT_LVL_CONSTANT">APP_ACT_LVL_CONSTANT</string>
     <string name="USER_BMR">APP_USER_BMR</string>
     <string name="ITEM_LIST">APP_USER_PREV_ITEM_LIST</string>
     <string name="CAL_LIST">APP_USER_PREV_ITEM_CALORIE_LIST</string>
