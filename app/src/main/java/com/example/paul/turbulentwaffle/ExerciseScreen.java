@@ -103,12 +103,8 @@ public class ExerciseScreen extends Activity{
                 activitySelected = parent.getItemAtPosition(position).toString();
                 getFinalActivity(activitySelected);
             }
-
             public void onNothingSelected(AdapterView<?> parent) {/*WHAT DID YOU DO?????*/}
         });
-
-
-
     }
 
     //Import the activity data from the activityData text file
