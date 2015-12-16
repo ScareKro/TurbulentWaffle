@@ -1,12 +1,14 @@
 package com.example.paul.turbulentwaffle;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,17 +19,20 @@ import java.util.Scanner;
  * Created by Yam on 12/10/2015.
 */
 public class ExerciseScreen extends Activity{
-    private ArrayList<activitiesList> activityList;
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedEditor;
+    private ArrayList<activitiesListItem>   activityList = importActivityList(),
+                                            sortedList;
+    private activitiesListItem selectedActivity;
     private Spinner type_Spinner,
                     activity_Spinner;
                     //MET_Spinner;
-
     private String  selectActivity_string,
                     typeSelected,
                     activitySelected,
+                    calsBurned,
                     timeSpent_string;
-
     private EditText timeSpent_EditText;
 
 @Override
@@ -35,9 +40,11 @@ public class ExerciseScreen extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercise_layout);
 
+        sharedPreferences = ExerciseScreen.this.getSharedPreferences(
+                getString(R.string.PREF_FILE), MODE_PRIVATE);
+        sharedEditor = sharedPreferences.edit();
 
-        activityList = importActivityList();
-        createSpinners();
+    createSpinners();
         createEditTexts();
         addItemToTypeSpinner();
         addListenerToSpinners();
@@ -62,9 +69,8 @@ public class ExerciseScreen extends Activity{
     }
 
 
-    public void addItemToActivtySpinner(String selectedType) {
+    public void addItemToActivitySpinner(String selectedType) {
         ArrayList<String> tempList = new ArrayList<>();
-        ArrayList<activitiesList> sortedList = new ArrayList<>();
         for (int x = 0; x < activityList.size(); x++) {
             if (activityList.get(x).getType().equals(selectedType)) {
                 sortedList.add(activityList.get(x));
@@ -85,16 +91,19 @@ public class ExerciseScreen extends Activity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 typeSelected = parent.getItemAtPosition(position).toString();
-                addItemToActivtySpinner(typeSelected);
+                addItemToActivitySpinner(typeSelected);
                 activity_Spinner.setEnabled(true);
             }
+
             public void onNothingSelected(AdapterView<?> parent) {/*WHAT DID YOU DO?????*/}
         });
         activity_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 activitySelected = parent.getItemAtPosition(position).toString();
+                getFinalActivity(activitySelected);
             }
+
             public void onNothingSelected(AdapterView<?> parent) {/*WHAT DID YOU DO?????*/}
         });
 
@@ -103,9 +112,9 @@ public class ExerciseScreen extends Activity{
     }
 
     //Import the activity data from the activityData text file
-    public ArrayList<activitiesList> importActivityList() {
-        ArrayList<activitiesList> activityArray = new ArrayList<>();
-        ArrayList<activitiesList> sortedArray = new ArrayList<>();
+    public ArrayList<activitiesListItem> importActivityList() {
+        ArrayList<activitiesListItem> activityArray = new ArrayList<>();
+        ArrayList<activitiesListItem> sortedArray = new ArrayList<>();
         Scanner grabber = null;
         String iType = null;
         String iActivity = null;
@@ -123,40 +132,34 @@ public class ExerciseScreen extends Activity{
             iActivity = grabber.next();
             iMET = grabber.nextDouble();
 
-            activitiesList temp = new activitiesList(iType, iActivity, iMET );
+            activitiesListItem temp = new activitiesListItem(iType, iActivity, iMET );
             activityArray.add(temp);
         } while (grabber.hasNext());
 
 
         return activityArray;
     }
+    public void getFinalActivity(String selcectedActivityName) {
+        for(int x = 0; x < sortedList.size(); x++) {
+            if (sortedList.get(x).getActivity().equals(selcectedActivityName)) {
+                selectedActivity = sortedList.get(x);
+            }
+        }
+    }
+
     public void onCalculate() {
-
+        boolean passChecker = true;
+        if (timeSpent_EditText.getText().toString().isEmpty()) {
+            passChecker = false;
+        }
+        if (!passChecker) {
+            Toast.makeText(this, "Please enter missing field", Toast.LENGTH_SHORT);
+        } else {
+            calsBurned = Double.toString(selectedActivity.getMET() * R.string.USER_WEIGHT *
+                    Double.parseDouble(timeSpent_string));
+        }
+            //calsBurned = MET * weight * time
     }
 }
 
-class activitiesList {
-
-    public activitiesList(String iType, String iActivity, double iMET) {
-        type = iType;
-        activity = iActivity;
-        MET = iMET;
-    }
-
-    String type;
-    String activity;
-    double MET;
-
-    public String getType() {
-        return type;
-    }
-
-    public String getActivity() {
-        return activity;
-    }
-
-    public double getMET() {
-        return MET;
-    }
-}
 
