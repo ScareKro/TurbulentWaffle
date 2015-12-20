@@ -44,7 +44,7 @@ public class AddMealScreen extends Activity{
             sharedEditor.putString(getString(R.string.ITEM_LIST),"&");
             sharedEditor.putString(getString(R.string.CAL_LIST),"&");
             sharedEditor.commit();
-        } //This for loop basically checks if there are any saved previous meals.
+        } //This basically checks if there are any saved previous meals.
     } //If not then it sets the first element of the dropdown to just be a blank entry.
     public void initializeSpinners(){
         priorSpinner=(Spinner)findViewById(R.id.prior_meal_spinner_id); //name of previous meal
