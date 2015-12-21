@@ -71,7 +71,7 @@ public class AddMealScreen extends Activity{
         //to be an array of food items which the drop down will display.
 
         ArrayAdapter<String> priorSpinnerAdapter =
-                new ArrayAdapter<>(this,   android.R.layout.simple_spinner_item, spinnerArray);
+                new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerArray);
         priorSpinnerAdapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
 

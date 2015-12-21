@@ -25,8 +25,11 @@
     <string name="exercise_page_divider">---------------------------------------</string>
     <string name="selectActivity">Specific Activity:</string>
     <string name="type">Activity Type:</string>
-    <string name="timeSpent">Enter Time spent on activity(In minutes)</string>
+    <string name="type_button">Submit Type</string>
+    <string name="timeSpent">Enter Time spent on activity (In Hours)</string>
     <string name="activityButton">Enter Activity</string>
+    <string name="cal_burned_message">Number of Calories Burned:</string>
+    <string name="edit_Text_Hint">---</string>
     <string name="calculate">Calculate</string>
     <string name="history_welcome">Your Four-week History</string>
     <string name="date_select">Select a date:</string>

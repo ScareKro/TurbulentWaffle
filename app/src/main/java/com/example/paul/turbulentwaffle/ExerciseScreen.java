@@ -8,12 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,19 +21,21 @@ public class ExerciseScreen extends Activity {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedEditor;
-    private ArrayList<activitiesListItem> activityList ,
-            sortedList;
-    private ArrayList<String> menuList;
+    private ArrayList<activitiesListItem>   activityList;
+
     private activitiesListItem selectedActivity;
-    private Spinner type_Spinner,
+    private Spinner type_Spinner = null,
             activity_Spinner;
-    //MET_Spinner;
-    private String selectActivity_string,
-            typeSelected,
-            activitySelected,
-            calsBurned,
-            timeSpent_string;
+
+    private String  typeSelected = null,
+                    activitySelected;
+
     private EditText timeSpent_EditText;
+    private double  MET,
+                    weight,
+                    calsBurned,
+                    time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,75 +47,59 @@ public class ExerciseScreen extends Activity {
                 getString(R.string.PREF_FILE), MODE_PRIVATE);
         sharedEditor = sharedPreferences.edit();
 
-        createSpinners();
+        createTypeSpinner();
+        createActivitySpinner();
         createEditTexts();
         importActivityList();
         addItemToTypeSpinner();
         addItemToActivitySpinner();
         addListenerToSpinners();
     }
-    public void createSpinners() {
+    public void createTypeSpinner() {
         type_Spinner=(Spinner)findViewById(R.id.type_spinner_id);
+    }
+    public void createActivitySpinner() {
         activity_Spinner=(Spinner)findViewById(R.id.activity_spinner_id);
-        //MET_Spinner=(Spinner)findViewById(R.id.MET_spinner_id);
     }
     public void createEditTexts() {
         timeSpent_EditText=(EditText)findViewById(R.id.timeSpent_editText_id);
     }
     public void addItemToTypeSpinner() {
-        ArrayAdapter<CharSequence> typeSpinnerAdapter = //Set the serving spinners to go between
-                ArrayAdapter.createFromResource(this,     //the various numbers
+        ArrayAdapter<CharSequence> typeSpinnerAdapter =
+                ArrayAdapter.createFromResource(this,
                         R.array.activity_data,
                         android.R.layout.simple_spinner_item);
         typeSpinnerAdapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
 
         type_Spinner.setAdapter(typeSpinnerAdapter);
+        typeSelected = type_Spinner.getSelectedItem().toString();
 
     }
     public void addItemToActivitySpinner() {
      ArrayList<String> tempList = new ArrayList<>();
-        tempList.add("Please select type first");
+     String selectedType = type_Spinner.getSelectedItem().toString();
 
-        ArrayAdapter<String> activity_Adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, tempList);
-        activity_Adapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item);
-
-        activity_Spinner.setAdapter(activity_Adapter);
-
-    }
-
-
-    public void UpdateActivitySpinner(View view) {
-
-
-            ArrayList<String> tempList = new ArrayList<>();
-            for (int x = 0; x < activityList.size(); x++) {
-                if (activityList.get(x).getType().equals(activitySelected)) {
-                    sortedList.add(activityList.get(x));
-                }
+        for (int x = 0; x < activityList.size(); x++) {
+            if (activityList.get(x).getType().equalsIgnoreCase(selectedType)) {
+                tempList.add(activityList.get(x).getActivity());
             }
-            for (int x = 0; x < sortedList.size(); x++) {
-                tempList.add(sortedList.get(x).getActivity());
-                //System.out.println(sortedList.get(x).getActivity());
-            }
+        }
 
-            ArrayAdapter<String> activity_Adapter = new ArrayAdapter<>(this,
+                ArrayAdapter<String> activity_Adapter = new ArrayAdapter<>(this,
                     android.R.layout.simple_spinner_item, tempList);
             activity_Adapter.setDropDownViewResource(
                     android.R.layout.simple_spinner_dropdown_item);
 
-
-           //activity_Spinner.setAdapter(activity_Adapter);
+            activity_Spinner.setAdapter(activity_Adapter);
     }
 
     public void addListenerToSpinners() {
+
         type_Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 typeSelected = parent.getItemAtPosition(position).toString();
-
             }
 
             public void onNothingSelected(AdapterView<?> parent) {/*WHAT DID YOU DO?????*/}
@@ -127,7 +110,6 @@ public class ExerciseScreen extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 activitySelected = parent.getItemAtPosition(position).toString();
-                UpdateActivitySpinner(view);
             }
             public void onNothingSelected(AdapterView<?> parent) {/*WHAT DID YOU DO?????*/
 
@@ -157,7 +139,6 @@ public class ExerciseScreen extends Activity {
             do {
 
                 iType = grabber.next();
-
                 iActivity = grabber.next();
                 iMET = grabber.nextDouble();
 
@@ -167,31 +148,40 @@ public class ExerciseScreen extends Activity {
         }
 
         activityList = activityArray;
-
-        
+    }
+    public void selectTypeButtonAction(View view) {
+        createActivitySpinner();
+        addItemToActivitySpinner();
+        addListenerToSpinners();
     }
 
-
-    public void getFinalActivity(String selcectedActivityName) {
-        for(int x = 0; x < sortedList.size(); x++) {
-            if (sortedList.get(x).getActivity().equals(selcectedActivityName)) {
-                selectedActivity = sortedList.get(x);
+    public void getFinalActivity() {
+        for(int x = 0; x < activityList.size(); x++) {
+            if (activityList.get(x).getActivity().equalsIgnoreCase(activitySelected) && activityList.get(x).getType().equalsIgnoreCase(typeSelected)) {
+                selectedActivity = activityList.get(x);
+                Toast.makeText(this, selectedActivity.getActivity(), Toast.LENGTH_SHORT).show();
             }
         }
     }
 
 
     public void onCalculate(View view) {
-        boolean passChecker = true;
+        String warning = "You must enter a time. Or something like that";
         if (timeSpent_EditText.getText().toString().isEmpty()) {
-            passChecker = false;
-        }
-        if (!passChecker) {
-            Toast.makeText(this, "Please enter missing field", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
         } else {
-            calsBurned = Double.toString(selectedActivity.getMET() * R.string.USER_WEIGHT *
-                    Double.parseDouble(timeSpent_string));
-        }
+            getFinalActivity();
+           MET = selectedActivity.getMET();
+            System.out.println(MET);
+           weight = Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_WEIGHT),1));
+            System.out.println(weight);
+           time = Double.parseDouble(timeSpent_EditText.getText().toString());
+            System.out.println(time);
+           calsBurned = MET * weight * time;
+           TextView calsBurnedText = (TextView) findViewById(R.id.cals_burned_displayText_id);
+           calsBurnedText.setText(String.format("%.0f", calsBurned));
+      }
+
             //calsBurned = MET * weight * time
     }
 }
