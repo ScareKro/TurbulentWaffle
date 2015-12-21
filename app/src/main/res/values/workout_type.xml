@@ -90,7 +90,7 @@
         <item>dancing;ballroom dancing, competitive, general;11.3</item>
         <item>dancing;ballroom, slow (e.g., waltz, foxtrot, slow dancing, samba, tango, 19th century dance, mambo, cha cha);3</item>
         <item>dancing;Anishinaabe Jingle Dancing;5.5</item>
-        <item>dancing;Caribbean dance (Abakua, Beguine, Bellair, Bongo, Brukin's, Caribbean Quadrills, Dinki Mini, Gere, Gumbay, Ibo, Jonkonnu, Kumina, Oreisha, Jambu);3.5</item>
+        <item>dancing;Caribbean dance (Abakua, Beguine, Bellair, Bongo, Brukin\'s, Caribbean Quadrills, Dinki Mini, Gere, Gumbay, Ibo, Jonkonnu, Kumina, Oreisha, Jambu);3.5</item>
         <item>fishing and hunting;fishing, general;3.5</item>
         <item>fishing and hunting;fishing, crab fishing;4.5</item>
         <item>fishing and hunting;fishing, catching fish with hands;4</item>
@@ -681,12 +681,12 @@
         <item>walking;walking, 2.5 mph, downhill;3.3</item>
         <item>walking;walking, 2.8 to 3.2 mph, level, moderate pace, firm surface;3.5</item>
         <item>walking;walking, 3.5 mph, level, brisk, firm surface, walking for exercise;4.3</item>
-        <item>walking;walking, 2.9 to 3.5 mph, uphill, 1 to 5% grade;5.3</item>
-        <item>walking;walking, 2.9 to 3.5 mph, uphill, 6% to 15% grade;8</item>
+        <item>walking;walking, 2.9 to 3.5 mph, uphill, 1 to 5%% grade;5.3</item>
+        <item>walking;walking, 2.9 to 3.5 mph, uphill, 6%% to 15%% grade;8</item>
         <item>walking;walking, 4.0 mph, level, firm surface, very brisk pace;5</item>
         <item>walking;walking, 4.5 mph, level, firm surface, very, very brisk;7</item>
         <item>walking;walking, 5.0 mph, level, firm surface;8.3</item>
-        <item>walking;walking, 5.0 mph, uphill, 3% grade;9.8</item>
+        <item>walking;walking, 5.0 mph, uphill, 3%% grade;9.8</item>
         <item>walking;walking, for pleasure, work break;3.5</item>
         <item>walking;walking, grass track;4.8</item>
         <item>walking;walking, normal pace, plowed field or sand;4.5</item>
@@ -696,7 +696,7 @@
         <item>walking;walking, for exercise, 5.0 mph, with ski poles, Nordic walking, level, fast pace;9.5</item>
         <item>walking;walking, for exercise, with ski poles, Nordic walking, uphill;6.8</item>
         <item>walking;walking, backwards, 3.5 mph, level;6</item>
-        <item>walking;walking, backwards, 3.5 mph, uphill, 5% grade;8</item>
+        <item>walking;walking, backwards, 3.5 mph, uphill, 5%% grade;8</item>
         <item>water activities;boating, power, driving;2.5</item>
         <item>water activities;boating, power, passenger, light;1.3</item>
         <item>water activities;canoeing, on camping trip ( 270);4</item>
