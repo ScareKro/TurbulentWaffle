@@ -21,7 +21,10 @@
     <string name="cal_per_serving">Calories per serving:</string>
     <string name="next">Next</string>
     <string name="submit">Submit</string>
-    <string name="selectActivity">Please select your activity:</string>
+    <string name="findActivity">Please find your activity from our database:</string>
+    <string name="exercise_page_divider">---------------------------------------</string>
+    <string name="selectActivity">Specific Activity:</string>
+    <string name="type">Activity Type:</string>
     <string name="timeSpent">Enter Time spent on activity(In minutes)</string>
     <string name="activityButton">Enter Activity</string>
     <string name="calculate">Calculate</string>

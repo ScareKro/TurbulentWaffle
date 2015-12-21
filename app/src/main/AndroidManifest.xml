@@ -23,6 +23,9 @@
         <activity android:name=".AddMealScreen"
             android:label="AddMeal"
             android:theme="@style/AppTheme"/>
+        <activity android:name=".ExerciseScreen"
+            android:label="Excercise"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

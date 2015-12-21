@@ -438,7 +438,7 @@ occupation;sitting tasks, moderate effort (e.g., pushing heavy levers, riding mo
 occupation;sitting, teaching stretching or yoga, or light effort exercise class;2.8
 occupation;standing tasks, light effort (e.g., bartending, store clerk, assembling, filing, duplicating, librarian, putting up a Christmas tree, standing and talking at work, changing clothes when teaching physical education, standing);3
 occupation;standing, light/moderate effort (e.g., assemble/repair heavy parts, welding,stocking parts,auto repair,standing, packing boxes, nursing patient care);3
-occupation;standing, moderate effort, lifting items continuously, 10 – 20 lbs, with limited walking or resting;4.5
+occupation;standing, moderate effort, lifting items continuously, 10 � 20 lbs, with limited walking or resting;4.5
 occupation;standing, moderate effort, intermittent lifting 50 lbs, hitch/twisting ropes;3.5
 occupation;standing, moderate/heavy tasks (e.g., lifting more than 50 lbs, masonry, painting, paper hanging);4.5
 occupation;steel mill, moderate effort (e.g., fettling, forging, tipping molds);5.3
@@ -526,7 +526,7 @@ sports;boxing, in ring, general;12.8
 sports;boxing, punching bag;5.5
 sports;boxing, sparring;7.8
 sports;broomball;7
-sports;children’s games, adults playing (e.g., hopscotch, 4-square, dodgeball, playground apparatus, t-ball, tetherball, marbles, arcade games), moderate effort;5.8
+sports;children�s games, adults playing (e.g., hopscotch, 4-square, dodgeball, playground apparatus, t-ball, tetherball, marbles, arcade games), moderate effort;5.8
 sports;cheerleading, gymnastic moves, competitive;6
 sports;coaching, football, soccer, basketball, baseball, swimming, etc.;4
 sports;coaching, actively playing sport with players;8
@@ -672,7 +672,7 @@ walking;walking, less than 2.0 mph, level, strolling, very slow;2
 walking;walking, 2.0 mph, level, slow pace, firm surface;2.8
 walking;walking for pleasure ( 010);3.5
 walking;walking from house to car or bus, from car or bus to go places, from car or bus to and from the worksite;2.5
-walking;walking to neighbor’s house or family’s house for social reasons;2.5
+walking;walking to neighbor�s house or family�s house for social reasons;2.5
 walking;walking the dog;3
 walking;walking, 2.5 mph, level, firm surface;3
 walking;walking, 2.5 mph, downhill;3.3
