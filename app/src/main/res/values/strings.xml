@@ -25,6 +25,11 @@
     <string name="timeSpent">Enter Time spent on activity(In minutes)</string>
     <string name="activityButton">Enter Activity</string>
     <string name="calculate">Calculate</string>
+    <string name="history_welcome">Your Four-week History</string>
+    <string name="date_select">Select a date:</string>
+    <string name="history_weight">Weight:</string>
+    <string name="history_cals_consumed">Calories consumed:</string>
+    <string name="history_cals_burned">Calories burned:</string>
     //---------------Persistent Settings------------------------------
     <string name="PREF_FILE">APP_PREF_FILE</string>
     <string name="USER_NAME">APP_USER_NAME</string>
