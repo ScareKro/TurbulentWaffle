@@ -13,6 +13,14 @@ import android.widget.Toast;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Authors: Kron
+ *
+ * Program creates a screen from which a user can enter their name, birthdate, weight, height,
+ * activity level, and weight goal. This constitutes creating their initial profile which is used
+ * to calculate their caloric allowance for the day.
+ * Automatically adjusts all values entered to metric units.
+ */
 public class SettingsScreen extends Activity{
     private Spinner birthDateSpinner,
             genderSpinner,

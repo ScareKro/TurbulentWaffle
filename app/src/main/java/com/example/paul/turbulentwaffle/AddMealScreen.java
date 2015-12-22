@@ -11,6 +11,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+/**
+ * Author: Kron
+ *
+ * Offers the user the chance to enter any food item they've eaten. Saves new items to the drop
+ * down menu for prior meals and asks them to enter how many servings of said food they've eaten.
+ * Also asks for calories per serving from any brand new item, but remembers automatically from
+ * prior meals.
+ */
 public class AddMealScreen extends Activity{
     private boolean refresh = false; //If refreshing the page or leaving it (false = leaving)
     private SharedPreferences sharedPreferences;

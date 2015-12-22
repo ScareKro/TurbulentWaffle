@@ -12,6 +12,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Authors: Kron
+ *
+ * The main page, sends the user to the settings page to create their account if there is no
+ * pre-existing account. Waits for user to return from any other screen and takes in any values
+ * changed while over there. Defines the actions of all the buttons pressed and what page it sends
+ * you to.
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;

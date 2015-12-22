@@ -16,6 +16,8 @@ import java.util.Scanner;
 
 /**
  * Created by Yam on 12/10/2015.
+ *
+ *
 */
 public class ExerciseScreen extends Activity {
 
