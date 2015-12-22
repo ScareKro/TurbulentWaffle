@@ -39,6 +39,7 @@ public class ExerciseScreen extends Activity {
                     weight,
                     calsBurned,
                     time;
+    private boolean pass = false;
 
 
     @Override
@@ -114,9 +115,10 @@ public class ExerciseScreen extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 activitySelected = parent.getItemAtPosition(position).toString();
             }   //Get the selected activity
+
             public void onNothingSelected(AdapterView<?> parent) {/*WHAT DID YOU DO?????*/
 
-        }
+            }
         });
     }
     //Import the activity data from the activityData text file
@@ -159,37 +161,53 @@ public class ExerciseScreen extends Activity {
         for(int x = 0; x < activityList.size(); x++) {
             if (activityList.get(x).getActivity().equalsIgnoreCase(activitySelected) && activityList.get(x).getType().equalsIgnoreCase(typeSelected)) {
                 selectedActivity = activityList.get(x);
-                Toast.makeText(this, selectedActivity.getActivity(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, selectedActivity.getActivity(), Toast.LENGTH_SHORT).show();
             }
         }
     }
 
 
-    public void onCalculate(View view) {    //runs when the calculate button is pressed
+    public void calcCalsBurned(){
+        pass = false;
         String warning = "You must enter a time. Or something like that";
         if (timeSpent_EditText.getText().toString().isEmpty()) { //throws warning if timeSpent_EditText is left empty
             Toast.makeText(this, warning, Toast.LENGTH_SHORT).show();
-        } else {
+        } else{
             getFinalActivity();
             MET = selectedActivity.getMET();
-            System.out.println(MET);
+            //System.out.println(MET);
             weight = Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_WEIGHT), 1));
-            System.out.println(weight);
+            //System.out.println(weight);
             time = Double.parseDouble(timeSpent_EditText.getText().toString());
-            System.out.println(time);
+            //System.out.println(time);
             calsBurned = MET * weight * time;    //calculates the number of calories burned in activity
             TextView calsBurnedText = (TextView) findViewById(R.id.cals_burned_displayText_id);
             calsBurnedText.setText(String.format("%.0f", calsBurned));
+            pass = true;
         }
     }
 
+    public void onCalculate(View view) {    //runs when the calculate button is pressed
+        calcCalsBurned();
+        timeSpent_EditText.setText("");
+        createTypeSpinner();
+        createActivitySpinner();
+        addItemToTypeSpinner();
+        addItemToActivitySpinner();
+        addListenerToSpinners();
+    }
+
     public void SubmitExercise(View view) {
-        Intent goingBack = new Intent();
-        goingBack.putExtra("PageName","Exercise");
-        TextView calsBurnedText = (TextView) findViewById(R.id.cals_burned_displayText_id);
-        goingBack.putExtra("CalBurn",calsBurnedText.getText().toString());
-        setResult(RESULT_OK, goingBack);
-        finish(); //done.
+        calcCalsBurned();
+
+        if(pass) {
+            Intent goingBack = new Intent();
+            goingBack.putExtra("PageName", "Exercise");
+            TextView calsBurnedText = (TextView) findViewById(R.id.cals_burned_displayText_id);
+            goingBack.putExtra("CalBurn", calsBurnedText.getText().toString());
+            setResult(RESULT_OK, goingBack);
+            finish(); //done.
+        }
     }
 }
 

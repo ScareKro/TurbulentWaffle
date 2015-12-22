@@ -100,6 +100,7 @@
             android:layout_alignParentRight="true"
             android:background="#ff6262"
             android:textSize="25sp"
+            android:inputType="number"
             android:id="@+id/cal_per_serving"/>
     </RelativeLayout>
 
