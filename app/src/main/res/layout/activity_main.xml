@@ -104,7 +104,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="#ff6262" />
+            android:background="#4a4a4a"
+            android:textColor="#a2a2a2" />
     </RelativeLayout>
 
 </LinearLayout>
