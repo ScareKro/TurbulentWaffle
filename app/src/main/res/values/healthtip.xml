@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="healthtip">
+        <item>Quit eating so much you fatty.</item>
+        <item>Maybe go for a run?</item>
+        <item>Salads are good for you.</item>
+        <item>Going outside is healthy.</item>
+        <item>Have you been physically active today?</item>
+        <item>*psst* I think you might have put on a few pounds.</item>
+        <item>Replacing soda with water is probably a good idea.</item>
+        <item>You are what you eat, so you must be eating a lot of nuts.</item>
+        <item>Better get liposuction.</item>
+        <item>Celery is a very low calorie food. You can nearly starve to death by eating nothing but celery.</item>
+    </string-array>
+</resources>

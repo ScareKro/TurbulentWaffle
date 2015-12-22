@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Authors: Kron
@@ -66,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         setContentView(R.layout.activity_main);
+        String[] TipArray = getResources().getStringArray(R.array.healthtip);
+        int randNum = (int)(Math.random()*9);
+        ((TextView)findViewById(R.id.TipText)).setText(TipArray[randNum]);
         if(data.getStringExtra("PageName").equals("Settings")) {
             //set an account as existing from now on.
             sharedEditor.putBoolean(getString(R.string.ACC_EXIST), true);
