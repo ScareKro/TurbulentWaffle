@@ -114,7 +114,6 @@ public class SettingsScreen extends Activity{
         temp = sharedPreferences.getString(getString(R.string.ACTIVITY_SETTING_LEVEL),
                 "Sedentary - little or no exercise");
         spinnerPosition = activitySpinnerAdapter.getPosition(temp);
-        Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
         activityAmountSpinner.setSelection(spinnerPosition);
 
         //Display Name
