@@ -52,4 +52,6 @@
     <string name="USER_BMR">APP_USER_BMR</string>
     <string name="ITEM_LIST">APP_USER_PREV_ITEM_LIST</string>
     <string name="CAL_LIST">APP_USER_PREV_ITEM_CALORIE_LIST</string>
+    <string name="TODAY_CAL">APP_USER_PREV_ITEM_CALORIE_EATEN_TODAY</string>
+    <string name="TODAY_DATE">APP_USER_THE_LAST_DATE_OPENED</string>
 </resources>

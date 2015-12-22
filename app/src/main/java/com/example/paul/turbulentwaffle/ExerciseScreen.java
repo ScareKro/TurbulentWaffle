@@ -1,6 +1,7 @@
 package com.example.paul.turbulentwaffle;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +18,11 @@ import java.util.Scanner;
 /**
  * Created by Yam on 12/10/2015.
  *
- *
+ * Creates a list of activity types in a spinner and then gets sub activities selected when
+ * the user clicks on the submit activity button.
+ * After entering their activity, specific activity, and time of workout they then hit
+ * calculate and the app checks how many calories are burned by that activity
+ * then on submit it will return that many calories to the total remaining for the day.
 */
 
 public class ExerciseScreen extends Activity {
@@ -176,6 +181,15 @@ public class ExerciseScreen extends Activity {
             TextView calsBurnedText = (TextView) findViewById(R.id.cals_burned_displayText_id);
             calsBurnedText.setText(String.format("%.0f", calsBurned));
         }
+    }
+
+    public void SubmitExercise(View view) {
+        Intent goingBack = new Intent();
+        goingBack.putExtra("PageName","Exercise");
+        TextView calsBurnedText = (TextView) findViewById(R.id.cals_burned_displayText_id);
+        goingBack.putExtra("CalBurn",calsBurnedText.getText().toString());
+        setResult(RESULT_OK, goingBack);
+        finish(); //done.
     }
 }
 

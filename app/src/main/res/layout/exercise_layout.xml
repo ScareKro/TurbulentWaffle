@@ -7,7 +7,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/backgroundlines">
 
     <TextView
         android:id="@+id/Heading"
@@ -43,16 +44,17 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/type_text"
             android:id="@+id/type_spinner_id"
-            android:background="#b4e2ff" />
+            android:background="#ff6262" />
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:text="@string/type_button"
             android:textSize="15sp"
             android:onClick="selectTypeButtonAction"
-            android:id="@+id/type_button"/>
+            android:id="@+id/type_button"
+            android:background="@drawable/redbutton2" />
     </RelativeLayout>
    <RelativeLayout
        android:layout_width="match_parent"
@@ -73,7 +75,7 @@
            android:layout_toEndOf="@id/select_activity"
            android:layout_toRightOf="@id/select_activity"
            android:id="@+id/activity_spinner_id"
-           android:background="#b4e2ff" />
+           android:background="#ff6262" />
    </RelativeLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -93,9 +95,9 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:id="@+id/timeSpent_editText_id"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:hint="@string/edit_Text_Hint"
-        android:background="#b4e2ff"/>
+        android:background="#ff6262"/>
     </RelativeLayout>
 
     <TextView
@@ -120,9 +122,25 @@
             android:layout_height="wrap_content"
             android:layout_alignRight="@id/cal_burn_message"
             android:textColor="#640000"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:id="@+id/cals_burned_displayText_id"/>
 
+    </RelativeLayout>
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/calculate"
+            android:textSize="30sp"
+            android:onClick="onCalculate"
+            android:id="@+id/calculate_button_id"
+            android:background="@drawable/redbutton2"
+            android:layout_marginTop="60dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -130,12 +148,13 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="@string/calculate"
+            android:layout_height="50dp"
+            android:text="@string/submit"
             android:textSize="30sp"
-            android:onClick="onCalculate"
-            android:id="@+id/calculate_button_id"/>
+            android:onClick="SubmitExercise"
+            android:id="@+id/submit_button_id"
+            android:background="@drawable/redbutton2"
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
+
 </LinearLayout>

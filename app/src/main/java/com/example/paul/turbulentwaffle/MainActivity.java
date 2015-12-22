@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     final int caloriesPerPound = 500;
     final double kilosPerPound = 0.45359237;
     int todayCals = 0;
+    DateFormat dateFormat;
+    Date date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +47,28 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.PREF_FILE), MODE_PRIVATE);
         sharedEditor = sharedPreferences.edit();
 
+        //----check if the date has changed--------------
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        date = new Date();
+        if(!sharedPreferences.getString(getString(R.string.TODAY_DATE),"cat").equals(
+                dateFormat.format(date))){
+            sharedEditor.putString(getString(R.string.TODAY_DATE), dateFormat.format(date));
+            sharedEditor.putInt(getString(R.string.TODAY_CAL),0);
+            if(!sharedEditor.commit()){
+                String toastMessage = "Error setting today's calories to 0";
+                Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
+            }
+        }
+        //-----------------------------------------------
+
         if(sharedPreferences.getBoolean(getString(R.string.ACC_EXIST), false)){
         //Check for pre-existing account
             setContentView(R.layout.activity_main);
+
+            String[] TipArray = getResources().getStringArray(R.array.healthtip);
+            int randNum = (int)(Math.random()*9); //create random health tip
+            ((TextView)findViewById(R.id.TipText)).setText(TipArray[randNum]);
+
             TextView usersGreetingMessage = (TextView) findViewById(R.id.hi_text);
             usersGreetingMessage.setText(getString(R.string.hi) + " " +
                     sharedPreferences.getString(getString(R.string.USER_NAME), "") + "!");
@@ -53,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             calcBMR();
             userBMR = Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_BMR),1));
             TextView RemainingCalsText = (TextView) findViewById(R.id.remaining_cal_id);
+            todayCals=sharedPreferences.getInt(getString(R.string.TODAY_CAL), 0);
             RemainingCalsText.setText(String.valueOf((int)(userBMR-todayCals)));
         } else {            //Sends user to settings if there isn't one to make one.
             String toastMessage = "----Create Profile----";
@@ -70,6 +94,21 @@ public class MainActivity extends AppCompatActivity {
         String[] TipArray = getResources().getStringArray(R.array.healthtip);
         int randNum = (int)(Math.random()*9);
         ((TextView)findViewById(R.id.TipText)).setText(TipArray[randNum]);
+
+        //----check if the date has changed--------------
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        date = new Date();
+        if(!sharedPreferences.getString(getString(R.string.TODAY_DATE),"cat").equals(
+                dateFormat.format(date))){
+            sharedEditor.putString(getString(R.string.TODAY_DATE), dateFormat.format(date));
+            sharedEditor.putInt(getString(R.string.TODAY_CAL),0);
+            if(!sharedEditor.commit()){
+                String toastMessage = "Error setting today's calories to 0";
+                Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
+            }
+        }
+        //-----------------------------------------------
+
         if(data.getStringExtra("PageName").equals("Settings")) {
             //set an account as existing from now on.
             sharedEditor.putBoolean(getString(R.string.ACC_EXIST), true);
@@ -143,7 +182,23 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
             }
         }else if(data.getStringExtra("PageName").equals("AddMeal")){
+            todayCals=sharedPreferences.getInt(getString(R.string.TODAY_CAL), 0);
             todayCals+=Integer.parseInt(data.getStringExtra("CalsEaten"));
+            sharedEditor.putInt(getString(R.string.TODAY_CAL),
+                    todayCals);
+            if(!sharedEditor.commit()){
+                String toastMessage = "Error saving today calories!";
+                Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
+            }
+        }else if(data.getStringExtra("PageName").equals("Exercise")){
+            todayCals=sharedPreferences.getInt(getString(R.string.TODAY_CAL), 0);
+            todayCals-=Integer.parseInt(data.getStringExtra("CalBurn"));
+            sharedEditor.putInt(getString(R.string.TODAY_CAL),
+                    todayCals);
+            if(!sharedEditor.commit()){
+                String toastMessage = "Error saving today calories!";
+                Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
+            }
         }
         //Set the greeting message with display name.
         TextView usersGreetingMessage = (TextView) findViewById(R.id.hi_text);
@@ -153,6 +208,7 @@ public class MainActivity extends AppCompatActivity {
         calcBMR();
         userBMR = Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_BMR), 1));
         TextView RemainingCalsText = (TextView) findViewById(R.id.remaining_cal_id);
+        todayCals=sharedPreferences.getInt(getString(R.string.TODAY_CAL), 0);
         RemainingCalsText.setText(String.valueOf((int)(userBMR-todayCals)));
     }
 

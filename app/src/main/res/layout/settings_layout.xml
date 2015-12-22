@@ -13,7 +13,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/backgroundlines">
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:id="@+id/disp_name_id"
-        android:background="#b4e2ff" />
+        android:background="#ff6262" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +39,7 @@
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:id="@+id/gender_spinner_id"
-        android:background="#b4e2ff"
+        android:background="#ff6262"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -55,13 +56,13 @@
             android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/birth_date_id"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:hint="@string/day"/>
         <Spinner
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:id="@+id/month_date_spinner_id"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:layout_centerHorizontal="true" />
 
         <EditText
@@ -69,7 +70,7 @@
             android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/birth_year_id"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:layout_alignParentRight="true"
             android:hint="@string/year"/>
     </RelativeLayout>
@@ -90,12 +91,12 @@
             android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/weight_number_id"
-            android:background="#b4e2ff"/>
+            android:background="#ff6262"/>
         <Spinner
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:id="@+id/weight_unit_spinner_id"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
@@ -115,12 +116,12 @@
             android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/height_number_id"
-            android:background="#b4e2ff"/>
+            android:background="#ff6262"/>
         <Spinner
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:id="@+id/height_unit_spinner_id"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
@@ -140,13 +141,13 @@
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:id="@+id/goal_weight_amount_spinner_id"
-            android:background="#b4e2ff" />
+            android:background="#ff6262" />
 
         <Spinner
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:id="@+id/goal_weight_unit_spinner_id"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
@@ -161,16 +162,17 @@
         android:layout_width="fill_parent"
         android:layout_height="35dp"
         android:id="@+id/activity_amount_spinner_id"
-        android:background="#b4e2ff"/>
+        android:background="#ff6262"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="108dp"
+        android:layout_height="65dp"
         android:layout_gravity="right|bottom"
         android:layout_marginTop="10dp"
         android:text="Submit"
         android:textSize="25sp"
-        android:onClick="onSubmitProfile"/>
+        android:onClick="onSubmitProfile"
+        android:background="@drawable/redbutton2" />
 
 </LinearLayout>
 </ScrollView>

@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/backgroundlines">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/prior_meal_spinner_id"
-        android:background="#b4e2ff"
+        android:background="#ff6262"
         android:layout_centerHorizontal="true" />
 
     <RelativeLayout
@@ -37,7 +38,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/servings_num_prior_spinner_id"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
@@ -59,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/new_meal_ET"
-        android:background="#b4e2ff"
+        android:background="#ff6262"
         android:textSize="25sp"
         android:hint="@string/name_meal_here"/>
 
@@ -78,7 +79,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/servings_num_new_spinner_id"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 
@@ -89,7 +90,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:textSize="23sp"
             android:id="@+id/cal_per_serving_txt_id"
             android:text="@string/cal_per_serving"
             android:textStyle="bold"/>
@@ -97,7 +98,7 @@
             android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="#b4e2ff"
+            android:background="#ff6262"
             android:textSize="25sp"
             android:id="@+id/cal_per_serving"/>
     </RelativeLayout>
@@ -109,19 +110,21 @@
         android:padding="5dp">
         <Button
             android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:text="@string/next"
             android:textSize="30sp"
             android:id="@+id/meal_next_button"
-            android:onClick="onNextFoods"/>
+            android:onClick="onNextFoods"
+            android:background="@drawable/redbutton2" />
         <Button
             android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_alignParentRight="true"
             android:text="@string/submit"
             android:textSize="30sp"
             android:onClick="onSubmitFoods"
-            android:id="@+id/meal_submit_button"/>
+            android:id="@+id/meal_submit_button"
+            android:background="@drawable/redbutton2" />
     </RelativeLayout>
 
 </LinearLayout>
