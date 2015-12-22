@@ -65,4 +65,5 @@
     <string name="USER_SETTINGS_WEIGHT">APP_USER_SETTINGS_WEIGHT</string>
     <string name="USER_SETTINGS_HEIGHT">APP_USER_SETTINGS_HEIGHT</string>
     <string name="ACTIVITY_SETTING_LEVEL">APP_USER_SETTINGS_ACTIVITY_LEVEL</string>
+    <string name="USER_CALORIE_CHANGE">APP_USER_CALORIE_CHANGE</string>
 </resources>

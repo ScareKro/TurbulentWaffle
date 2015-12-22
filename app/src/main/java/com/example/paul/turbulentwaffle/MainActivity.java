@@ -168,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
             else {
                 calorieChange = 500;
             }
+            sharedEditor.putLong(getString(R.string.USER_CALORIE_CHANGE),
+                    Double.doubleToLongBits(calorieChange));
             sharedEditor.putLong(getString(R.string.GOAL_WEIGHT),
                     Double.doubleToLongBits(goalWeight));
 
@@ -235,7 +237,8 @@ public class MainActivity extends AppCompatActivity {
                                 (5.0*(double)age)+
                                 (sharedPreferences.getInt(getString(R.string.GENDER_CONST),1)))*
                                 (Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.ACT_LVL_CONSTANT),1)))+
-                                (calorieChange*Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.GOAL_WEIGHT),1)))
+                                (Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.USER_CALORIE_CHANGE),500))*
+                                        Double.longBitsToDouble(sharedPreferences.getLong(getString(R.string.GOAL_WEIGHT),1)))
                 )
         );
         //userBMR = (10 * weightKG) + (6.25 * heightCM) - (5.0 * (double) age) + genderConstant;
