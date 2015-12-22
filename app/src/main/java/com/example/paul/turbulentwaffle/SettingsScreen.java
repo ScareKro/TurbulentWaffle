@@ -2,12 +2,14 @@ package com.example.paul.turbulentwaffle;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.LinkedHashMap;
@@ -22,6 +24,9 @@ import java.util.Map;
  * Automatically adjusts all values entered to metric units.
  */
 public class SettingsScreen extends Activity{
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedEditor;
+
     private Spinner birthDateSpinner,
             genderSpinner,
             weightSpinner,
@@ -47,16 +52,22 @@ public class SettingsScreen extends Activity{
 
     Map<String, String> actLvlMap = new LinkedHashMap<>();
 
-    private void makeActList() {
-        for (int i = 0; i < (getResources().getStringArray(R.array.activity_levels).length); i++) {
-            actLvlMap.put(getResources().getStringArray(R.array.activity_levels)[i],
-                    getResources().getStringArray(R.array.actlvl_constants)[i]);
-        }
-    }
+    private ArrayAdapter<CharSequence> monthSpinnerAdapter,
+            genderSpinnerAdapter,
+            weightAmountSpinnerAdapter,
+            weightUnitsSpinnerAdapter,
+            heightSpinnerAdapter,
+            activitySpinnerAdapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = SettingsScreen.this.getSharedPreferences(
+                getString(R.string.PREF_FILE), MODE_PRIVATE);
+        sharedEditor = sharedPreferences.edit();
+
         setContentView(R.layout.settings_layout);
 
         initializeTextViews();
@@ -64,6 +75,72 @@ public class SettingsScreen extends Activity{
         addItemsToUnitTypeSpinner();
         addListenerToUnitTypeSpinner();
         makeActList();
+        if(sharedPreferences.getBoolean(getString(R.string.ACC_EXIST),false))
+            setPrevUnits();
+    }
+
+    private void setPrevUnits() {
+        //Gender
+        String temp = sharedPreferences.getString(getString(R.string.USER_GENDER),"Male");
+        int spinnerPosition = genderSpinnerAdapter.getPosition(temp);
+        genderSpinner.setSelection(spinnerPosition);
+
+        //Birth Month
+        temp = sharedPreferences.getString(getString(R.string.USR_BDAY_MONTH), "January");
+        spinnerPosition = monthSpinnerAdapter.getPosition(temp);
+        birthDateSpinner.setSelection(spinnerPosition);
+
+        //Weight Unit
+        temp = sharedPreferences.getString(getString(R.string.USER_WEIGHT_UNIT), "lbs");
+        spinnerPosition = weightUnitsSpinnerAdapter.getPosition(temp);
+        weightSpinner.setSelection(spinnerPosition);
+
+        //Height Unit
+        temp = sharedPreferences.getString(getString(R.string.USER_HEIGHT_UNIT), "in");
+        spinnerPosition = heightSpinnerAdapter.getPosition(temp);
+        heightSpinner.setSelection(spinnerPosition);
+
+        //Goal weight amount
+        temp = sharedPreferences.getString(getString(R.string.USER_GOAL_WEIGHT), "0");
+        spinnerPosition = weightAmountSpinnerAdapter.getPosition(temp);
+        goalWeightAmountSpinner.setSelection(spinnerPosition);
+
+        //Goal weight unit
+        temp = sharedPreferences.getString(getString(R.string.USER_GOAL_WEIGHT_UNIT), "lbs");
+        spinnerPosition = weightUnitsSpinnerAdapter.getPosition(temp);
+        goalWeightUnitsSpinner.setSelection(spinnerPosition);
+
+        //Activity amount
+        temp = sharedPreferences.getString(getString(R.string.ACTIVITY_SETTING_LEVEL),
+                "Sedentary - little or no exercise");
+        spinnerPosition = activitySpinnerAdapter.getPosition(temp);
+        Toast.makeText(this, temp, Toast.LENGTH_SHORT).show();
+        activityAmountSpinner.setSelection(spinnerPosition);
+
+        //Display Name
+        temp = sharedPreferences.getString(getString(R.string.USER_SETTINGS_NAME), "bob");
+        EditText editText = (EditText)findViewById(R.id.disp_name_id);
+        editText.setText(temp, TextView.BufferType.EDITABLE);
+
+        //Birth Day
+        temp = sharedPreferences.getString(getString(R.string.USR_BDAY_DAY),"1");
+        editText = (EditText)findViewById(R.id.birth_date_id);
+        editText.setText(temp, TextView.BufferType.EDITABLE);
+
+        //Birth Year
+        temp = sharedPreferences.getString(getString(R.string.USR_BDAY_YEAR),"2000");
+        editText = (EditText)findViewById(R.id.birth_year_id);
+        editText.setText(temp, TextView.BufferType.EDITABLE);
+
+        //Weight Num
+        temp = sharedPreferences.getString(getString(R.string.USER_SETTINGS_WEIGHT),"150");
+        editText = (EditText)findViewById(R.id.weight_number_id);
+        editText.setText(temp, TextView.BufferType.EDITABLE);
+
+        //Height Num
+        temp = sharedPreferences.getString(getString(R.string.USER_SETTINGS_HEIGHT),"60");
+        editText = (EditText)findViewById(R.id.height_number_id);
+        editText.setText(temp, TextView.BufferType.EDITABLE);
     }
 
     public void initializeSpinners(){
@@ -84,8 +161,15 @@ public class SettingsScreen extends Activity{
         heightText=(EditText)findViewById(R.id.height_number_id); //height
     }
 
+    private void makeActList() {
+        for (int i = 0; i < (getResources().getStringArray(R.array.activity_levels).length); i++) {
+            actLvlMap.put(getResources().getStringArray(R.array.activity_levels)[i],
+                    getResources().getStringArray(R.array.actlvl_constants)[i]);
+        }
+    }
+
     public void addItemsToUnitTypeSpinner(){
-        ArrayAdapter<CharSequence> monthSpinnerAdapter =    //Set the month spinner to include the months
+        monthSpinnerAdapter =    //Set the month spinner to include the months
                 ArrayAdapter.createFromResource(this,
                         R.array.month_units,
                         android.R.layout.simple_spinner_item);
@@ -94,7 +178,7 @@ public class SettingsScreen extends Activity{
 
         birthDateSpinner.setAdapter(monthSpinnerAdapter);
 
-        ArrayAdapter<CharSequence> genderSpinnerAdapter = //Set gender spinner to include male and female
+        genderSpinnerAdapter = //Set gender spinner to include male and female
                 ArrayAdapter.createFromResource(this,
                         R.array.gender_values,
                         android.R.layout.simple_spinner_item);
@@ -103,7 +187,7 @@ public class SettingsScreen extends Activity{
 
         genderSpinner.setAdapter(genderSpinnerAdapter);
 
-        ArrayAdapter<CharSequence> weightAmountSpinnerAdapter =
+        weightAmountSpinnerAdapter =
                 ArrayAdapter.createFromResource(this,
                         R.array.weight_amounts,
                         android.R.layout.simple_spinner_item);
@@ -112,7 +196,7 @@ public class SettingsScreen extends Activity{
 
         goalWeightAmountSpinner.setAdapter(weightAmountSpinnerAdapter);
 
-        ArrayAdapter<CharSequence> weightUnitsSpinnerAdapter = //Set the weight spinners to go between
+        weightUnitsSpinnerAdapter = //Set the weight spinners to go between
                 ArrayAdapter.createFromResource(this,     //lbs and kg
                         R.array.weight_units,
                         android.R.layout.simple_spinner_item);
@@ -122,7 +206,7 @@ public class SettingsScreen extends Activity{
         weightSpinner.setAdapter(weightUnitsSpinnerAdapter);
         goalWeightUnitsSpinner.setAdapter(weightUnitsSpinnerAdapter);
 
-        ArrayAdapter<CharSequence> heightSpinnerAdapter =   //allow height to choose between
+        heightSpinnerAdapter =   //allow height to choose between
                 ArrayAdapter.createFromResource(this,       //ft and m
                         R.array.height_units,
                         android.R.layout.simple_spinner_item);
@@ -131,7 +215,7 @@ public class SettingsScreen extends Activity{
 
         heightSpinner.setAdapter(heightSpinnerAdapter);
 
-        ArrayAdapter<CharSequence> activitySpinnerAdapter =
+        activitySpinnerAdapter =
                 ArrayAdapter.createFromResource(this,
                         R.array.activity_levels,
                         android.R.layout.simple_spinner_item);
@@ -248,24 +332,41 @@ public class SettingsScreen extends Activity{
             //Only displays if a field was ignored.
         }
         else{
+            sharedEditor.putBoolean(getString(R.string.ACC_EXIST), true);
             Intent goingBack = new Intent();
             //Prepares to go to Main page if all fields filled in.
             actLvlConstant = actLvlMap.get(activityAmountSelected);
-            goingBack.putExtra("PageName","Settings");
-            goingBack.putExtra("DispName",dispName.getText().toString());
-            goingBack.putExtra("BDayDay",bDayDay.getText().toString());
-            goingBack.putExtra("BDayMonth",monthSelected);
-            goingBack.putExtra("BDayYear",bDayYear.getText().toString());
-            goingBack.putExtra("Gender",genderSelected);
-            goingBack.putExtra("CurrWeight",weightText.getText().toString());
+            goingBack.putExtra("PageName", "Settings");
+            goingBack.putExtra("DispName", dispName.getText().toString());
+            sharedEditor.putString(getString(R.string.USER_SETTINGS_NAME), dispName.getText().toString());
+            goingBack.putExtra("BDayDay", bDayDay.getText().toString());
+            sharedEditor.putString(getString(R.string.USR_BDAY_DAY), bDayDay.getText().toString());
+            goingBack.putExtra("BDayMonth", monthSelected);
+            sharedEditor.putString(getString(R.string.USR_BDAY_MONTH), monthSelected);
+            goingBack.putExtra("BDayYear", bDayYear.getText().toString());
+            sharedEditor.putString(getString(R.string.USR_BDAY_YEAR), bDayYear.getText().toString());
+            goingBack.putExtra("Gender", genderSelected);
+            sharedEditor.putString(getString(R.string.USER_GENDER), genderSelected);
+            goingBack.putExtra("CurrWeight", weightText.getText().toString());
+            sharedEditor.putString(getString(R.string.USER_SETTINGS_WEIGHT), weightText.getText().toString());
             goingBack.putExtra("CurrWeightUnit", currWeightUnitSelected);
-            goingBack.putExtra("Height",heightText.getText().toString());
+            sharedEditor.putString(getString(R.string.USER_WEIGHT_UNIT), currWeightUnitSelected);
+            goingBack.putExtra("Height", heightText.getText().toString());
+            sharedEditor.putString(getString(R.string.USER_SETTINGS_HEIGHT), heightText.getText().toString());
             goingBack.putExtra("HeightUnit", heightUnitSelected);
+            sharedEditor.putString(getString(R.string.USER_HEIGHT_UNIT), heightUnitSelected);
             goingBack.putExtra("GoalWeightAmount", goalWeightAmountSelected);
+            sharedEditor.putString(getString(R.string.USER_GOAL_WEIGHT), goalWeightAmountSelected);
             goingBack.putExtra("GoalWeightUnit", goalWeightUnitSelected);
+            sharedEditor.putString(getString(R.string.USER_GOAL_WEIGHT_UNIT), goalWeightUnitSelected);
             goingBack.putExtra("ActivityLevel", activityAmountSelected);
+            sharedEditor.putString(getString(R.string.ACTIVITY_SETTING_LEVEL), activityAmountSelected);
             goingBack.putExtra("ActivityLvlConstant", actLvlConstant);
             //Saves all fields to be returned to main page.
+            if(!sharedEditor.commit()){
+                String toastMessage = "Error saving settings!";
+                Toast.makeText(this, toastMessage, Toast.LENGTH_SHORT).show();
+            }
             setResult(RESULT_OK, goingBack);
             finish(); //done.
         }
