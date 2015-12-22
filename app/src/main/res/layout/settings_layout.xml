@@ -57,6 +57,7 @@
             android:textSize="25sp"
             android:id="@+id/birth_date_id"
             android:background="#ff6262"
+            android:inputType="number"
             android:hint="@string/day"/>
         <Spinner
             android:layout_width="100dp"
@@ -70,6 +71,7 @@
             android:layout_height="35dp"
             android:textSize="25sp"
             android:id="@+id/birth_year_id"
+            android:inputType="number"
             android:background="#ff6262"
             android:layout_alignParentRight="true"
             android:hint="@string/year"/>
@@ -90,6 +92,7 @@
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:textSize="25sp"
+            android:inputType="number"
             android:id="@+id/weight_number_id"
             android:background="#ff6262"/>
         <Spinner
@@ -115,6 +118,7 @@
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:textSize="25sp"
+            android:inputType="number"
             android:id="@+id/height_number_id"
             android:background="#ff6262"/>
         <Spinner
